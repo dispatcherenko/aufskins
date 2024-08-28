@@ -7,7 +7,7 @@ import mainPage from './components/MainPage.vue'
 const app = createApp(App)
 
 const routes = [
-    { path: '/main', component: mainPage, alias: '/', name: 'main' },
+    { path: '/aufskins/main', component: mainPage, alias: '/', name: 'main' },
 ];
 
 const router = createRouter({
