@@ -3,7 +3,12 @@
     <img src="./avatar.svg" alt="" />
     <div class="loader-wrapper">
       <div class="loader-spinner">
-        <span class="loader"></span>
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
       <p class="text">Загружаем скины и лучшие предложения</p>
     </div>
@@ -59,57 +64,45 @@ img {
   justify-content: center;
   margin-bottom: 12px;
 }
-.loader {
+.lds-ring {
+  /* change color here */
+  color: #c41341;
+  width: 24px;
+}
+.lds-ring,
+.lds-ring div {
+  box-sizing: border-box;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+}
+.lds-ring div {
+  box-sizing: border-box;
   display: block;
+  position: absolute;
   width: 20px;
   height: 20px;
+  border: 2px solid currentColor;
   border-radius: 50%;
-  position: relative;
-  /* animation: rotate 1s linear infinite; */
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent transparent transparent;
 }
-.loader::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  inset: 0px;
-  border-radius: 50%;
-  border: 2px solid #c41341;
-  animation: prixClipFix 2s linear infinite;
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
 }
-
-@keyframes rotate {
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes prixClipFix {
-  0% {
-    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
-  }
-  12.5% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
-  }
-  25% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
-  }
-  37.5% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
-  }
-  50% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
-  }
-  62.5% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
-  }
-  75% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
-  }
-  87.5% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
-  }
-  100% {
-    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
   }
 }
 </style>

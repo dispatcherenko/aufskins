@@ -3,6 +3,7 @@ import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import Steam from "@/assets/nav/steam.svg";
 import Burger from "@/features/sidemenu/UI/Burger.vue";
 import SideMenu from "@/features/sidemenu/UI/SideMenu.vue";
+import LocaleDropdown from "@/features/localiztion/UI/LocaleDropdown.vue";
 </script>
 
 <template>
@@ -17,21 +18,9 @@ import SideMenu from "@/features/sidemenu/UI/SideMenu.vue";
     <nav class="header-info">
       <img src="@/assets/nav/avatar.svg" alt="logo" />
       <div class="header-info__currency">
-        <img
-          src="@/assets/nav/ruflag.svg"
-          alt="flag"
-          width="24px"
-          height="24px"
-        />
-        <p class="header-info__currency-text">RU | ₽</p>
-        <img
-          src="@/assets/nav/arrowDown.svg"
-          alt="arrow"
-          width="16px"
-          height="16px"
-        />
+        <LocaleDropdown />
       </div>
-      <p class="header-info__catalog">Каталог</p>
+      <a class="header-info__catalog" href="/">Каталог</a>
     </nav>
     <div class="header-menu">
       <Button2
@@ -59,17 +48,31 @@ import SideMenu from "@/features/sidemenu/UI/SideMenu.vue";
 .header-info {
   display: flex;
   align-items: center;
-  gap: 35px;
+  gap: 16px;
+}
+.header-info__currency {
+  position: relative;
+}
+.header-info__currency::after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  right: -8px;
+  width: 1px;
+  height: 24px;
+  background-color: #ffffff1a;
+  margin-left: 10px;
+  z-index: 1;
+  border-radius: 30px;
 }
 .header-info__catalog {
   color: #fff;
   font-size: 16px;
   font-weight: 500;
-}
-.header-info__currency {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  padding: 12px 16px;
 }
 .header-info__currency-text {
   color: rgba(255, 255, 255, 0.5);

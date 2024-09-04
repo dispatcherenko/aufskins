@@ -23,7 +23,7 @@
         ></span>
       </p>
     </div>
-    <div v-if="games.cs2" class="offers__main-elems">
+    <div v-if="games.cs2" class="offers__main-elems" v-auto-animate>
       <div v-for="skin in skins" :key="skin.id">
         <SkinCard :skin="skin" />
       </div>
@@ -122,7 +122,7 @@ onMounted(() => {
 .offers__main-elems {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 12px;
   transition: all 0.2s;
 }
@@ -242,7 +242,6 @@ onMounted(() => {
 }
 @media (max-width: 968px) {
   .offers__main-elems {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }
 @media (max-width: 772px) {
@@ -253,7 +252,6 @@ onMounted(() => {
   }
   .offers__main-elems {
     width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }
 @media (max-width: 767px) {
@@ -263,16 +261,6 @@ onMounted(() => {
   .offers__button {
     align-self: center;
     margin-bottom: 80px;
-  }
-}
-@media (max-width: 756px) {
-  .offers__main-elems {
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  }
-}
-@media (max-width: 504px) {
-  .offers__main-elems {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   }
 }
 </style>

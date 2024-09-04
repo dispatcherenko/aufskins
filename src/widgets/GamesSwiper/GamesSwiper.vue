@@ -127,7 +127,6 @@ const componentsArray = [
 
 :deep .slide-info__button:hover {
   background-color: rgb(166, 16, 56);
-  transform: translateY(-5px);
 }
 
 @media (max-width: 1280px) {

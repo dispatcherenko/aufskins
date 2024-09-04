@@ -6,7 +6,7 @@ import LoadingScreen from "@/shared/loading/LoadingScreen.vue";
 
 <template>
   <div class="app">
-    <LoadingScreen />
+    <!-- <LoadingScreen /> -->
     <NavigationBar />
     <main class="app-main">
       <router-view />
@@ -25,11 +25,36 @@ import LoadingScreen from "@/shared/loading/LoadingScreen.vue";
   padding: 0;
   box-sizing: border-box;
   font-family: "Geometria";
-  color: #ffffff;
 }
 html,
 body {
-  height: 100%;
+  height: 100vh;
+}
+
+body::-webkit-scrollbar {
+  width: 12px; /* ширина scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: #100e19; /* цвет дорожки */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #231f36; /* цвет плашки */
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  color: white;
+}
+a {
+  text-decoration: none;
+  transition: all 0.2s;
+  color: #ffffff80;
+}
+a:hover {
+  color: white;
 }
 h1 {
   font-family: Geometria;
