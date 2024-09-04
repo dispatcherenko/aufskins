@@ -92,11 +92,11 @@ const onSwiper = (swiper) => {
 .swiper__carousel {
   position: absolute;
   display: flex;
-  align-items: center;
   gap: 2px;
-  bottom: 5%;
-  left: 45%;
-  z-index: 2;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 .swiper__carousel-item {
   width: 8px;

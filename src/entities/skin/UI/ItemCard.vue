@@ -64,84 +64,10 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.offers {
-  width: 100%;
-  height: 936px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-.offres__title {
-  font-size: 64px;
-  font-weight: 700;
-  color: #fff;
-}
-.offers__main-select {
-  display: flex;
-  align-items: center;
-  height: 42px;
-  margin-bottom: 15px;
-}
-.offers__main-select__game {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  position: relative;
-  text-align: center;
-  cursor: pointer;
-}
-.offers__main-select__game:nth-child(1) {
-  height: 100%;
-  width: 67px;
-}
-.offers__main-select__game:nth-child(2) {
-  height: 100%;
-  width: 91px;
-}
-.offers__main-select__game:nth-child(3) {
-  height: 100%;
-  width: 74px;
-}
-.offers__main-select__game:nth-child(4) {
-  height: 100%;
-  width: 172px;
-}
-.offers__main-select__game--active {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background-color: #c41341;
-  clip-path: polygon(28% 36%, 77% 51%, 100% 0, 100% 100%, 0 100%, 0 29%);
-}
-.offers__main {
-  width: 100%;
-  height: 749px;
-  max-height: 749px;
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-.offers__main-elems {
-  width: 100%;
-  height: 687px;
-  max-height: 687px;
-  display: flex;
-  align-items: start;
-  flex-wrap: wrap;
-  gap: 5px 15px;
-  overflow: scroll;
-  scrollbar-width: none;
-}
-.offers__main-elems::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
 .offers__main-elems-elem {
   width: 193px;
   height: 221px;
+  border-radius: 2px;
   min-width: 193px;
   background-color: #171424;
   position: relative;

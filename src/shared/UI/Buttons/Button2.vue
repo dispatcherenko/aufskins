@@ -19,26 +19,29 @@ const props = defineProps({
 
 <style scoped>
 .button {
-  width: 211px;
+  width: 259px;
   height: 56px;
-  background-color: rgba(196, 19, 65, 1);
-  outline: none;
-  border: none;
+  background-color: #c41341;
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  clip-path: polygon(11% 0, 93% 0, 100% 69%, 89% 100%, 7% 100%, 0 27%);
+  align-items: center;
+  clip-path: polygon(6% 0, 90% 0, 100% 30%, 94% 100%, 10% 100%, 0 70%);
   cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  gap: 10px;
 
   transition: all 0.2s;
 }
 .button:hover {
-  background-color: rgb(166, 16, 56);
-  transform: translateY(-5px);
+  background-color: #98072d;
+}
+.button:disabled {
+  background-color: #ffffff1a;
+  cursor: default;
 }
 @media (max-width: 1280px) {
   .button__title--add {

@@ -26,12 +26,17 @@
         <p class="opening-games--title">Team Fortress 2</p>
       </div>
     </div>
-    <ButtonRed :img="Money" alt="money" text="Начать обмен"></ButtonRed>
+    <Button1
+      class="opening-button"
+      :img="Money"
+      alt="money"
+      text="Начать обмен"
+    ></Button1>
   </section>
 </template>
 
 <script setup>
-import ButtonRed from "@/shared/UI/ButtonRed.vue";
+import Button1 from "@/shared/UI/Buttons/Button1.vue";
 import Money from "@/assets/mainpage/money.svg";
 </script>
 
@@ -122,19 +127,8 @@ import Money from "@/assets/mainpage/money.svg";
 .opening-button {
   width: 211px;
   height: 56px;
-  background-color: rgba(196, 19, 65, 1);
-  outline: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  clip-path: polygon(11% 0, 93% 0, 100% 69%, 89% 100%, 7% 100%, 0 27%);
-  cursor: pointer;
 }
+
 @media (max-width: 1280px) {
   .opening {
     width: 95%;

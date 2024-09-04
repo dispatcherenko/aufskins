@@ -1,20 +1,35 @@
 <template>
   <section class="wrapper">
-    <h1 class="title">Крупные покупки 24 часа</h1>
-    <div class="courusel">
-      <div v-for="skin in skins" :key="skin.id">
+    <h4 class="title">Крупные покупки 24 часа</h4>
+    <swiper
+      :freeMode="true"
+      :loop="true"
+      :autoplay="{
+        delay: 2500,
+        disableOnInteraction: false,
+      }"
+      :spaceBetween="12"
+      :slidesPerView="'auto'"
+      :modules="modules"
+      class="courusel"
+    >
+      <swiper-slide v-for="skin in skins" :key="skin.id">
         <SkinCardMini :skin="skin" />
-      </div>
-    </div>
+      </swiper-slide>
+    </swiper>
   </section>
 </template>
 
 <script setup>
-import SkinCardMini from "@/entities/skin/UI/SkinCardMini.vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import SkinCardMini from "@/entities/skin/UI/PopularCard.vue";
 import axios from "axios";
 import { onMounted, ref } from "vue";
+import { Autoplay, FreeMode } from "swiper/modules";
 
 let skins = ref([]);
+
+const modules = [FreeMode, Autoplay];
 
 const fetchBest = async () => {
   try {
@@ -61,12 +76,22 @@ onMounted(() => {
   width: 0;
   height: 0;
 }
+
+.swiper-slide {
+  /* Center slide text vertically */
+  display: flex;
+}
+
+.swiper-slide {
+  width: 184px;
+}
+
 @media (max-width: 1280px) {
   .title {
-    margin-left: 30px;
+    margin-left: 20px;
   }
   .courusel {
-    margin-left: 30px;
+    margin-left: 20px;
   }
 }
 </style>

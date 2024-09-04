@@ -37,6 +37,7 @@ const props = defineProps({ skin: Object });
   display: flex;
   align-items: end;
   justify-content: center;
+  border-radius: 2px;
 }
 .courusel__element__info {
   width: 80%;

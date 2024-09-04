@@ -10,6 +10,9 @@ import GamesSwiper from "@/widgets/GamesSwiper/GamesSwiper.vue";
 </script>
 
 <style lang="css" scoped>
+.title {
+  margin-bottom: 24px;
+}
 .selector {
   width: 100%;
   max-width: 1696px;

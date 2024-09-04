@@ -28,13 +28,15 @@
         <SkinCard :skin="skin" />
       </div>
     </div>
-    <ButtonRed class="offers__button" text="Посмотреть все товары" />
+
+    <Button1 class="offers__button" text="Посмотреть все товары" />
   </section>
 </template>
 
 <script setup>
-import SkinCard from "@/entities/skin/UI/SkinCard.vue";
-import ButtonRed from "@/shared/UI/ButtonRed.vue";
+import SkinCard from "@/entities/skin/UI/ItemCard.vue";
+import Button1 from "@/shared/UI/Buttons/Button1.vue";
+
 import axios from "axios";
 import { onMounted, ref } from "vue";
 
@@ -72,6 +74,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.title {
+  text-align: left;
+  margin-bottom: 32px;
+}
 .offers {
   width: 100%;
   max-width: 1696px;
@@ -116,7 +122,7 @@ onMounted(() => {
 .offers__main-elems {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 12px;
   transition: all 0.2s;
 }
@@ -146,14 +152,9 @@ onMounted(() => {
 .offers__button {
   width: 264px;
   height: 56px;
-  min-height: 56px;
-  outline: none;
-  border: none;
-  background-color: #c41341;
   font-size: 18px;
   font-weight: 500;
   color: #fff;
-  clip-path: polygon(6% 0, 90% 0, 100% 30%, 94% 100%, 10% 100%, 0 70%);
   align-self: flex-end;
   margin-top: 30px;
 }
@@ -239,6 +240,11 @@ onMounted(() => {
     margin: 0 4px;
   }
 }
+@media (max-width: 968px) {
+  .offers__main-elems {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
 @media (max-width: 772px) {
   .offers__main-elems-elem {
     width: 100%;
@@ -257,6 +263,16 @@ onMounted(() => {
   .offers__button {
     align-self: center;
     margin-bottom: 80px;
+  }
+}
+@media (max-width: 756px) {
+  .offers__main-elems {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  }
+}
+@media (max-width: 504px) {
+  .offers__main-elems {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   }
 }
 </style>
