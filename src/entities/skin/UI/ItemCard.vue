@@ -87,6 +87,8 @@ watch(() => props.skin, updateImagePath, { deep: true });
   flex-direction: column;
   align-items: center;
   justify-content: end;
+
+  cursor: pointer;
 }
 .upper {
   height: 100%;

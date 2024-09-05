@@ -2,33 +2,37 @@
   <section class="offers">
     <h1 class="title">Лучшие предложения</h1>
     <div class="offers__main-select">
-      <p @click="changeGame('cs2')" class="offers__main-select__game">
-        CS2<span
-          :class="{
-            'offers__main-select__game--active': selectedGame === 'cs2',
-          }"
-        ></span>
+      <p
+        @click="changeGame('cs2')"
+        class="offers__main-select__game"
+        :class="{ 'offers__main-select__game--active': selectedGame === 'cs2' }"
+      >
+        CS2
       </p>
-      <p @click="changeGame('dota')" class="offers__main-select__game">
-        Dota 2<span
-          :class="{
-            'offers__main-select__game--active': selectedGame === 'dota',
-          }"
-        ></span>
+      <p
+        @click="changeGame('dota')"
+        class="offers__main-select__game"
+        :class="{
+          'offers__main-select__game--active': selectedGame === 'dota',
+        }"
+      >
+        Dota 2
       </p>
-      <p @click="changeGame('rust')" class="offers__main-select__game">
-        Rust<span
-          :class="{
-            'offers__main-select__game--active': selectedGame === 'rust',
-          }"
-        ></span>
+      <p
+        @click="changeGame('rust')"
+        class="offers__main-select__game"
+        :class="{
+          'offers__main-select__game--active': selectedGame === 'rust',
+        }"
+      >
+        Rust
       </p>
-      <p @click="changeGame('tf2')" class="offers__main-select__game">
-        Team Fortress 2<span
-          :class="{
-            'offers__main-select__game--active': selectedGame === 'tf2',
-          }"
-        ></span>
+      <p
+        @click="changeGame('tf2')"
+        class="offers__main-select__game"
+        :class="{ 'offers__main-select__game--active': selectedGame === 'tf2' }"
+      >
+        Team Fortress 2
       </p>
     </div>
     <div class="offers__main-elems" v-auto-animate>
@@ -119,9 +123,16 @@ onMounted(() => {
   cursor: pointer;
   box-sizing: border-box;
   padding: 10px 16px;
+
+  transition: all 0.2s;
 }
+
 .offers__main-select__game--active {
   color: #ffffff;
+}
+
+.offers__main-select__game--active::before {
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;

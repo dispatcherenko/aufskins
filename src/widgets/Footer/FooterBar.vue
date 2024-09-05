@@ -5,8 +5,12 @@
     <section class="footer-wrapper">
       <div class="footer-up">
         <div class="footer-up__info">
-          <img src="@/assets/footer/logo_small.svg" alt="avatar" />
-          <p class="footer-up__info-about">О нас</p>
+          <a class="logo" href="/"
+            ><img src="@/assets/nav/avatar.svg" alt="logo"
+          /></a>
+          <router-link :to="{ name: 'errorpage' }" class="footer-up__info-about"
+            >О нас</router-link
+          >
           <p class="footer-up__info-help">
             Тех. поддержка support@auf-skins.ru
           </p>
@@ -37,6 +41,9 @@
 </template>
 
 <style scoped>
+.logo:hover {
+  background-color: transparent;
+}
 .footer {
   height: 194px;
   width: 100%;
@@ -46,11 +53,15 @@
   justify-content: center;
 }
 .footer-wrapper {
-  width: 95%;
-  height: 130px;
+  width: 100%;
+  max-width: 1696px;
+  margin-left: 32px;
+  margin-right: 32px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .footer-up {
   width: 100%;
@@ -78,6 +89,7 @@
 .footer-up__pay {
   width: 457px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
@@ -93,13 +105,11 @@
   align-items: center;
 }
 .footer-bottom__info {
-  width: 408px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .footer-bottom__policy {
-  width: 430px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -118,7 +128,12 @@
   .footer {
     height: 261px;
   }
+  .footer-wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
   .footer-up {
+    height: auto;
     flex-direction: column;
     gap: 10px;
     align-items: start;
@@ -137,18 +152,19 @@
   .footer {
     height: 430px;
   }
+  .footer-wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
   .footer-up {
     gap: 20px;
     justify-content: center;
-  }
-  .footer-wrapper {
-    height: 280px;
   }
   .footer-bottom {
     flex-direction: column;
     align-items: start;
     justify-content: end;
-    gap: 20px;
+    height: auto;
   }
   .footer-bottom__policy {
     align-items: start;
@@ -158,6 +174,12 @@
     align-items: start;
     height: 116px;
     gap: 15px;
+    margin-bottom: 24px;
+    width: auto;
+  }
+  .footer-up__pay {
+    width: auto;
+    gap: 40px;
   }
 }
 </style>

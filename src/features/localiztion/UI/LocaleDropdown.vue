@@ -38,7 +38,7 @@ import enflag from "@/assets/nav/usflag.svg";
 let isOpen = ref(false);
 let countries = ref([
   { flagURL: ruflag, name: "RU", curr: "₽" },
-  { flagURL: enflag, name: "US", curr: "$" },
+  { flagURL: enflag, name: "EN", curr: "$" },
 ]);
 let selectedCountry = ref({
   flagURL: ruflag,
@@ -84,6 +84,12 @@ onUnmounted(() => {
   cursor: pointer;
   padding: 12px 16px;
   border-radius: 4px;
+}
+
+.dropdown-header:hover {
+  background-color: #231f36;
+  border-radius: 2px;
+  transition: all 0.2s;
 }
 
 .arrow {

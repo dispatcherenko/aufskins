@@ -1,49 +1,62 @@
+<template>
+  <header class="header">
+    <div class="header__wrapper">
+      <nav class="header-info">
+        <a class="logo" href="/"
+          ><img src="@/assets/nav/avatar.svg" alt="logo"
+        /></a>
+        <div class="header-info__currency">
+          <LocaleDropdown />
+        </div>
+        <a class="header-info__catalog" href="/">Каталог</a>
+      </nav>
+      <div class="header-menu">
+        <Button2
+          class="header-menu__button"
+          :img="Steam"
+          alt="steam"
+          text="Войти"
+          addText="через Steam"
+          :onclick="buttonAction"
+        ></Button2>
+        <Burger />
+      </div>
+    </div>
+  </header>
+</template>
+
 <script setup>
 import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import Steam from "@/assets/nav/steam.svg";
 import Burger from "@/features/sidemenu/UI/Burger.vue";
 import SideMenu from "@/features/sidemenu/UI/SideMenu.vue";
 import LocaleDropdown from "@/features/localiztion/UI/LocaleDropdown.vue";
+
+const props = defineProps({
+  buttonAction: Function,
+});
 </script>
 
-<template>
-  <SideMenu>
-    <ul class="sidebar-panel-nav">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </SideMenu>
-  <header class="header">
-    <nav class="header-info">
-      <img src="@/assets/nav/avatar.svg" alt="logo" />
-      <div class="header-info__currency">
-        <LocaleDropdown />
-      </div>
-      <a class="header-info__catalog" href="/">Каталог</a>
-    </nav>
-    <div class="header-menu">
-      <Button2
-        class="header-menu__button"
-        :img="Steam"
-        alt="steam"
-        text="Войти"
-        addText="через Steam"
-      ></Button2>
-      <Burger />
-    </div>
-  </header>
-</template>
-
 <style scoped>
+.logo:hover {
+  background-color: transparent;
+}
 .header {
-  width: 95%;
+  width: 100%;
   height: 80px;
   background-color: #100e19;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.header__wrapper {
+  width: 100%;
+  max-width: 1696px;
+  margin-left: 32px;
+  margin-right: 32px;
+  display: flex;
+  justify-content: space-between;
 }
 .header-info {
   display: flex;
@@ -69,7 +82,6 @@ import LocaleDropdown from "@/features/localiztion/UI/LocaleDropdown.vue";
   border-radius: 30px;
 }
 .header-info__catalog {
-  color: #fff;
   font-size: 16px;
   font-weight: 500;
   padding: 12px 16px;
@@ -92,6 +104,10 @@ import LocaleDropdown from "@/features/localiztion/UI/LocaleDropdown.vue";
   z-index: 1000;
 }
 @media (max-width: 1280px) {
+  .header__wrapper {
+    margin-left: 20px;
+    margin-right: 28px;
+  }
   .header-info__currency {
     display: none;
   }

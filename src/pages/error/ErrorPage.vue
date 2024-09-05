@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Button2 from "@/shared/UI/Buttons/Button2.vue";
+
+const buttonAction = () => {};
 </script>
 
 <template>
@@ -9,7 +11,7 @@ import Button2 from "@/shared/UI/Buttons/Button2.vue";
     <p class="text">
       Обычно это происходит из-за неправильной или устаревшей ссылки
     </p>
-    <Button2 text="В каталог" class="button" />
+    <Button2 :onclick="buttonAction" text="В каталог" class="button" />
   </div>
 </template>
 

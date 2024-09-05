@@ -1,0 +1,10 @@
+@mixin container($margin-desktop: 56px, $margin-tablet: 20px) {
+  margin: 0 $margin-desktop;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 1280px) {
+    margin: 0 $margin-tablet;
+  }
+}

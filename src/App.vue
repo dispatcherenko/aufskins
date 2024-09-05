@@ -1,19 +1,32 @@
-<script setup>
-import NavigationBar from "@/widgets/Header/NavigationBar.vue";
-import FooterBar from "@/widgets/Footer/FooterBar.vue";
-import LoadingScreen from "@/shared/loading/LoadingScreen.vue";
-</script>
-
 <template>
   <div class="app">
-    <!-- <LoadingScreen /> -->
-    <NavigationBar />
+    <LoadingScreen v-if="isLoading" />
+    <NavigationBar :button-action="toProfile" />
     <main class="app-main">
       <router-view />
     </main>
     <FooterBar />
   </div>
 </template>
+
+<script setup>
+import NavigationBar from "@/widgets/Header/NavigationBar.vue";
+import FooterBar from "@/widgets/Footer/FooterBar.vue";
+import LoadingScreen from "@/shared/loading/LoadingScreen.vue";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+let isLoading = ref(false);
+const router = useRouter();
+
+const toProfile = () => {
+  isLoading.value = true;
+  setTimeout(() => {
+    isLoading.value = false;
+    router.push("/profile");
+  }, 1000);
+};
+</script>
 
 <style>
 @font-face {
@@ -29,6 +42,7 @@ import LoadingScreen from "@/shared/loading/LoadingScreen.vue";
 html,
 body {
   height: 100vh;
+  background-color: #100e19;
 }
 
 body::-webkit-scrollbar {
@@ -52,10 +66,13 @@ h4 {
 a {
   text-decoration: none;
   transition: all 0.2s;
-  color: #ffffff80;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
 }
 a:hover {
-  color: white;
+  background-color: #231f36;
+  border-radius: 2px;
 }
 h1 {
   font-family: Geometria;
