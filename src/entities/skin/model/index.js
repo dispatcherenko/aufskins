@@ -2,14 +2,14 @@ import { useFetchBest } from "../API";
 
 const { defineStore } = require("pinia");
 
-export const useSkinsStore = defineStore("alerts", {
+export const useItemsStore = defineStore("items", {
   state: () => ({
-    bestSkins: [],
+    bestSkinsCs: [],
     hugeBuys: [],
   }),
   actions: {
-    async fetchBest() {
-      this.bestSkins = useFetchBest();
+    async fetchBestCs() {
+      this.bestSkinsCs = useFetchBest();
     },
     async fetchHuge() {
       this.hugeBuys = useFetchHugeBuys();

@@ -35,12 +35,8 @@ const componentsArray = [
       class: "slide-img",
     }),
     h("div", { class: "slide-info" }, [
-      h("h1", { class: "slide-info__title" }, "CS2"),
-      h("p", { class: "slide-info__text" }, [
-        "Уникальные ножи, AWP и все другое, что вы так сильно",
-        h("br"),
-        "любите, только на AUFSKINS",
-      ]),
+      h("h1", { class: "slide-info__title" }, "DOTA 2"),
+      h("p", { class: "slide-info__text" }, ["Инфа про доту 2", h("br")]),
       h("button", { class: "slide-info__button" }, "Перейти в раздел"),
     ]),
   ]),
@@ -51,12 +47,8 @@ const componentsArray = [
       class: "slide-img",
     }),
     h("div", { class: "slide-info" }, [
-      h("h1", { class: "slide-info__title" }, "CS2"),
-      h("p", { class: "slide-info__text" }, [
-        "Уникальные ножи, AWP и все другое, что вы так сильно",
-        h("br"),
-        "любите, только на AUFSKINS",
-      ]),
+      h("h1", { class: "slide-info__title" }, "RUST"),
+      h("p", { class: "slide-info__text" }, ["Инфа про Rust", h("br")]),
       h("button", { class: "slide-info__button" }, "Перейти в раздел"),
     ]),
   ]),
@@ -67,12 +59,8 @@ const componentsArray = [
       class: "slide-img",
     }),
     h("div", { class: "slide-info" }, [
-      h("h1", { class: "slide-info__title" }, "CS2"),
-      h("p", { class: "slide-info__text" }, [
-        "Уникальные ножи, AWP и все другое, что вы так сильно",
-        h("br"),
-        "любите, только на AUFSKINS",
-      ]),
+      h("h1", { class: "slide-info__title" }, "Tesm Fortress2"),
+      h("p", { class: "slide-info__text" }, ["Инфа про tf2", h("br")]),
       h("button", { class: "slide-info__button" }, "Перейти в раздел"),
     ]),
   ]),
@@ -98,17 +86,18 @@ const componentsArray = [
   margin: 32px 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 :deep .slide-info__title {
   font-size: 28px;
   font-weight: 700;
   color: #fff;
+  margin-bottom: 8px;
 }
 :deep .slide-info__text {
   font-size: 16px;
   font-weight: 500;
   color: #fff;
+  margin-bottom: 25px;
 }
 :deep .slide-info__button {
   width: 214px;

@@ -1,15 +1,9 @@
 <template>
-  <article class="courusel__element">
-    <img
-      src="@/assets/mainpage/red.svg"
-      alt="bg"
-      style="position: absolute; top: 0; left: 13%"
-    />
-    <img
-      :src="skin.imageURL"
-      alt="skin"
-      style="position: absolute; top: 20%; left: 13%"
-    />
+  <div class="card">
+    <div class="upper">
+      <img :src="imagePath" alt="bg" class="level" />
+      <img :src="skin.imageURL" alt="skin" class="item" />
+    </div>
     <div class="courusel__element__info">
       <p class="courusel__element__info-price">
         {{ skin.price }}
@@ -20,24 +14,62 @@
         <span class="courusel__element__info-name--gray">{{ skin.gun }}</span>
       </p>
     </div>
-  </article>
+  </div>
 </template>
 
 <script setup>
-const props = defineProps({ skin: Object });
+import { ref, onMounted } from "vue";
+
+const props = defineProps({
+  skin: Object,
+});
+
+const imagePath = ref("");
+
+const getImagePath = async (level) => {
+  const module = await import(`@/assets/levels/${level}.svg`);
+  return module.default;
+};
+
+onMounted(async () => {
+  imagePath.value = await getImagePath(props.skin.level);
+});
 </script>
 
 <style scoped>
-.courusel__element {
+.card {
   width: 184px;
-  min-width: 184px;
-  height: 100%;
-  background: rgba(23, 20, 36, 1);
+  height: 174px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-color: #171424;
   position: relative;
   display: flex;
-  align-items: end;
-  justify-content: center;
-  border-radius: 2px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+.upper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+.level {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+}
+.item {
+  position: absolute;
+  top: 38px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 136px;
+  height: 81px;
+  z-index: 1;
 }
 .courusel__element__info {
   width: 80%;

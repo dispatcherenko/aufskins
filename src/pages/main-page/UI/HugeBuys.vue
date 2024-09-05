@@ -33,7 +33,7 @@ const modules = [FreeMode, Autoplay];
 
 const fetchBest = async () => {
   try {
-    const res = await axios.get(`https://9be368f409e5ba1b.mokky.dev/best`);
+    const res = await axios.get(`https://9be368f409e5ba1b.mokky.dev/hugebuys`);
     skins.value = res.data;
   } catch (e) {
     console.log(e);
@@ -50,9 +50,9 @@ onMounted(() => {
 <style scoped>
 .wrapper {
   width: 100%;
+  max-width: 1696px;
   display: flex;
   flex-direction: column;
-  gap: 2 0px;
   align-items: start;
   margin-bottom: 20px;
 }
@@ -87,11 +87,7 @@ onMounted(() => {
 }
 
 @media (max-width: 1280px) {
-  .title {
-    margin-left: 20px;
-  }
-  .courusel {
-    margin-left: 20px;
+  .wrapper {
   }
 }
 </style>

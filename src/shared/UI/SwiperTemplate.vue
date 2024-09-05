@@ -137,7 +137,4 @@ const onSwiper = (swiper) => {
     display: none;
   }
 }
-
-@media (max-width: 768px) {
-}
 </style>

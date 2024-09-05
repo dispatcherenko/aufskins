@@ -47,6 +47,7 @@ h2,
 h3,
 h4 {
   color: white;
+  line-height: normal;
 }
 a {
   text-decoration: none;
@@ -60,21 +61,17 @@ h1 {
   font-family: Geometria;
   font-size: 72px;
   font-weight: 700;
-  line-height: 75.6px;
-  text-align: center;
 }
 h2 {
   font-family: Geometria;
   font-size: 48px;
   font-weight: 700;
-  line-height: 60px;
   text-align: left;
 }
 h3 {
   font-family: Geometria;
   font-size: 28px;
   font-weight: 700;
-  line-height: 34px;
   letter-spacing: -0.5px;
   text-align: left;
 }
@@ -82,7 +79,6 @@ h4 {
   font-family: Geometria;
   font-size: 24px;
   font-weight: 700;
-  line-height: 30px;
   letter-spacing: -0.30000001192092896px;
   text-align: left;
 }
@@ -96,8 +92,7 @@ h4 {
   overflow: hidden;
 }
 .app-main {
-  width: 95%;
-  flex: 1;
+  width: 100%;
 }
 
 @media (max-width: 1279px) {
@@ -106,7 +101,6 @@ h4 {
   }
   .title {
     font-size: 28px;
-    margin-left: 20px;
   }
 }
 </style>

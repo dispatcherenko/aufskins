@@ -4,27 +4,40 @@
     <div class="offers__main-select">
       <p @click="changeGame('cs2')" class="offers__main-select__game">
         CS2<span
-          :class="{ 'offers__main-select__game--active': games.cs2 }"
+          :class="{
+            'offers__main-select__game--active': selectedGame === 'cs2',
+          }"
         ></span>
       </p>
       <p @click="changeGame('dota')" class="offers__main-select__game">
         Dota 2<span
-          :class="{ 'offers__main-select__game--active': games.dota }"
+          :class="{
+            'offers__main-select__game--active': selectedGame === 'dota',
+          }"
         ></span>
       </p>
       <p @click="changeGame('rust')" class="offers__main-select__game">
         Rust<span
-          :class="{ 'offers__main-select__game--active': games.rust }"
+          :class="{
+            'offers__main-select__game--active': selectedGame === 'rust',
+          }"
         ></span>
       </p>
       <p @click="changeGame('tf2')" class="offers__main-select__game">
         Team Fortress 2<span
-          :class="{ 'offers__main-select__game--active': games.tf2 }"
+          :class="{
+            'offers__main-select__game--active': selectedGame === 'tf2',
+          }"
         ></span>
       </p>
     </div>
-    <div v-if="games.cs2" class="offers__main-elems" v-auto-animate>
-      <div v-for="skin in skins" :key="skin.id">
+    <div class="offers__main-elems" v-auto-animate>
+      <div
+        v-for="skin in skins"
+        :key="skin.id"
+        class="offers__main-elems-elem"
+        v-auto-animate
+      >
         <SkinCard :skin="skin" />
       </div>
     </div>
@@ -41,35 +54,42 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 
 let skins = ref([]);
+let selectedGame = ref("cs2");
 
 const fetchBest = async () => {
   try {
-    const res = await axios.get(`https://9be368f409e5ba1b.mokky.dev/best`);
-    skins.value = res.data;
+    let res;
+
+    switch (selectedGame.value) {
+      case "cs2":
+        res = await axios.get(`https://9be368f409e5ba1b.mokky.dev/bestcs`);
+        skins.value = res.data;
+        break;
+      case "dota":
+        res = await axios.get(`https://9be368f409e5ba1b.mokky.dev/bestdota`);
+        skins.value = res.data;
+        break;
+      case "rust":
+        res = await axios.get(`https://9be368f409e5ba1b.mokky.dev/bestrust`);
+        skins.value = res.data;
+        break;
+      case "tf2":
+        res = await axios.get(`https://9be368f409e5ba1b.mokky.dev/besttf2`);
+        skins.value = res.data;
+        break;
+    }
   } catch (e) {
     console.log(e);
   }
 };
 
-const games = ref({
-  cs2: true,
-  dota: false,
-  rust: false,
-  tf2: false,
-});
-
-const changeGame = (name) => {
-  games.value.cs2 = false;
-  games.value.dota = false;
-  games.value.rust = false;
-  games.value.tf2 = false;
-  games.value[name] = true;
+const changeGame = (game) => {
+  selectedGame.value = game;
+  fetchBest();
 };
 
 onMounted(() => {
-  {
-    fetchBest();
-  }
+  fetchBest();
 });
 </script>
 
@@ -91,7 +111,7 @@ onMounted(() => {
   margin-bottom: 20px;
 }
 .offers__main-select__game {
-  color: #fff;
+  color: #ffffff80;
   font-size: 18px;
   font-weight: 500;
   position: relative;
@@ -101,6 +121,7 @@ onMounted(() => {
   padding: 10px 16px;
 }
 .offers__main-select__game--active {
+  color: #ffffff;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -132,10 +153,8 @@ onMounted(() => {
 }
 .offers__main-elems-elem {
   width: 100%;
-  max-width: 202px;
-  min-width: auto;
   height: 221px;
-  min-width: 193px;
+  min-width: 190px;
   background-color: #171424;
   position: relative;
   box-sizing: border-box;
@@ -222,7 +241,6 @@ onMounted(() => {
     width: 100%;
   }
   .offers__main-select {
-    margin-left: 20px;
     font-size: 18px;
     text-overflow: clip;
     white-space: nowrap;
@@ -232,32 +250,23 @@ onMounted(() => {
   }
   .offers__main-elems-elem {
     width: 100%;
-    min-width: auto;
-    max-width: 192px;
   }
   .offers__main-elems {
     width: 100%;
-    margin: 0 4px;
   }
-}
-@media (max-width: 968px) {
-  .offers__main-elems {
+  .title {
+    margin-bottom: 20px;
   }
 }
 @media (max-width: 772px) {
   .offers__main-elems-elem {
     width: 100%;
-    min-width: auto;
-    max-width: 184px;
   }
   .offers__main-elems {
     width: 100%;
   }
 }
 @media (max-width: 767px) {
-  .offers__main-select__game:nth-child(4) {
-    width: 71px;
-  }
   .offers__button {
     align-self: center;
     margin-bottom: 80px;

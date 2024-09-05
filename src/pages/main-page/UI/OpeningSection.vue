@@ -43,7 +43,6 @@ import Money from "@/assets/mainpage/money.svg";
 <style scoped>
 .opening {
   height: 731px;
-  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -52,6 +51,7 @@ import Money from "@/assets/mainpage/money.svg";
   gap: 50px;
   overflow: hidden;
   background-color: #100e19;
+  margin: 0 32px;
 }
 .opening--wrapper-left {
   position: absolute;
@@ -131,7 +131,7 @@ import Money from "@/assets/mainpage/money.svg";
 
 @media (max-width: 1280px) {
   .opening {
-    width: 95%;
+    margin: 0 20px;
   }
   .opening-title {
     font-size: 48px;
@@ -146,6 +146,7 @@ import Money from "@/assets/mainpage/money.svg";
 @media (max-width: 768px) {
   .opening {
     width: 100%;
+    margin: 0;
   }
   .opening-title {
     font-size: 28px;

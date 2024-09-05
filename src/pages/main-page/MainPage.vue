@@ -1,8 +1,8 @@
 <template>
+  <OpeningSection />
   <section class="main">
-    <OpeningSection />
     <CommercialSelector />
-    <BestOffers />
+    <BestOffers class="best-offers" />
     <GamesSelector />
     <HugeBuys />
   </section>
@@ -19,10 +19,16 @@ import GamesSelector from "./UI/GamesSelector.vue";
 import CommercialSelector from "./UI/CommercialSelector.vue";
 </script>
 
-<style scoped>
+<style>
 .main {
+  margin: 0 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (max-width: 1280px) {
+  .main {
+    margin: 0 20px;
+  }
 }
 </style>

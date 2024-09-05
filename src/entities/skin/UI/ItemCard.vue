@@ -1,17 +1,11 @@
 <template>
-  <div class="offers__main-elems-elem">
-    <img
-      src="@/assets/mainpage/purple.svg"
-      alt="bg"
-      style="position: absolute; top: -5%; left: 13%"
-    />
-    <img
-      :src="skin.imageURL"
-      alt="skin"
-      style="position: absolute; top: 10%; left: 13%"
-    />
-    <div class="offers__main-elems-elem__sickers">
-      <img v-for="sticker in skin.stickers" :src="sticker" alt="sticker" />
+  <div class="card">
+    <div class="upper">
+      <img :src="imagePath" alt="bg" class="level" />
+      <img :src="skin.imageURL" alt="skin" class="item" />
+      <div class="stickers">
+        <img v-for="sticker in skin.stickers" :src="sticker" alt="sticker" />
+      </div>
     </div>
     <div class="offers__main-elems-elem__info">
       <p class="offers__main-elems-elem__info-price">
@@ -33,9 +27,10 @@
         class="offers__main-elems-elem__info-bar"
         src="@/assets/mainpage/bar.svg"
         alt="bar"
+        v-if="skin.pattren"
       />
       <div class="offers__main-elems-elem__info-bottom">
-        <p class="offers__main-elems-elem__info-bottom__quality">
+        <span class="offers__main-elems-elem__info-bottom__quality">
           <span
             class="offers__main-elems-elem__info-bottom__quality--gold"
             v-if="skin.sv"
@@ -47,8 +42,8 @@
             >ST
           </span>
           <span v-if="skin.st || skin.sv" style="display: block">|</span>
-          {{ skin.quality }}
-        </p>
+          <span v-if="skin.quality">{{ skin.quality }}</span>
+        </span>
         <p class="offers__main-elems-elem__info-bottom__pattern">
           {{ skin.pattren }}
         </p>
@@ -58,17 +53,34 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onRenderTracked, watch } from "vue";
+
 const props = defineProps({
   skin: Object,
 });
+
+const imagePath = ref("");
+
+const getImagePath = async (level) => {
+  const module = await import(`@/assets/levels/${level}.svg`);
+  return module.default;
+};
+
+const updateImagePath = async () => {
+  imagePath.value = await getImagePath(props.skin.level);
+};
+
+onMounted(updateImagePath);
+
+watch(() => props.skin, updateImagePath, { deep: true });
 </script>
 
 <style scoped>
-.offers__main-elems-elem {
+.card {
   width: 193px;
   height: 221px;
-  border-radius: 2px;
-  min-width: 193px;
+  box-sizing: border-box;
+  border-radius: 10px;
   background-color: #171424;
   position: relative;
   display: flex;
@@ -76,10 +88,32 @@ const props = defineProps({
   align-items: center;
   justify-content: end;
 }
-.offers__main-elems-elem__sickers {
+.upper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+.level {
   position: absolute;
-  top: 2%;
-  right: 5%;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+}
+.item {
+  position: absolute;
+  top: 38px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 136px;
+  height: 81px;
+  z-index: 1;
+}
+.stickers {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 .offers__button {
   width: 264px;
@@ -95,6 +129,7 @@ const props = defineProps({
   align-self: flex-end;
   margin-top: 30px;
 }
+
 .offers__main-elems-elem__info {
   width: 100%;
   display: flex;
@@ -153,14 +188,8 @@ const props = defineProps({
     height: 454px;
     max-height: 454px;
   }
-  .offers__main-elems-elem {
+  .card {
     width: 202px;
-  }
-  .offers__main-elems-elem:nth-child(17) {
-    display: none;
-  }
-  .offers__main-elems-elem:nth-child(18) {
-    display: none;
   }
 }
 @media (max-width: 1280px) {
@@ -177,7 +206,7 @@ const props = defineProps({
   .offers__button {
     margin-right: 30px;
   }
-  .offers__main-elems-elem {
+  .card {
     width: 184px;
   }
   .offers__main-elems {
