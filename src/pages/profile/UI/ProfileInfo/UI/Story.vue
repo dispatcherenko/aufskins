@@ -19,11 +19,18 @@
             </div>
           </div>
         </div>
-        <div class="story__filter"></div>
+        <div class="story__filter">
+          <Dropdown
+            class="story__dropdown"
+            :options="options"
+            :selected="selected"
+            @update:selected="updateSelected"
+          />
+        </div>
       </div>
       <div class="story__payments">
         <PaymentNotification
-          type="refill"
+          type="deposit"
           result="success"
           amount="400"
           date="20.03.2024 · 16:53"
@@ -41,13 +48,13 @@
           date="19.03.2024 · 20:07"
         />
         <PaymentNotification
-          type="refill"
+          type="deposit"
           result="success"
           amount="400"
           date="19.03.2024 · 20:07"
         />
         <PaymentNotification
-          type="refill"
+          type="deposit"
           result="success"
           amount="15000"
           date="17.03.2024 · 12:49"
@@ -61,6 +68,19 @@
 import PaymentNotification from "@/shared/UI/Notifications/PaymentNotification.vue";
 import deposit from "@/assets/icons/deposits.svg";
 import send from "@/assets/icons/card-send.svg";
+import Dropdown from "@/shared/UI/Select/Dropdown.vue";
+import { ref } from "vue";
+
+const options = [
+  { name: "Все транзакции", id: "all" },
+  { name: "Пополнения", id: "deposit" },
+  { name: "Выводы", id: "withdrawals" },
+];
+const selected = ref({ name: "Все транзакции", id: "all" });
+
+const updateSelected = (newSelected) => {
+  selected.value = newSelected;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -81,6 +101,10 @@ import send from "@/assets/icons/card-send.svg";
     align-items: center;
   }
 
+  &__dropdown {
+    width: 184px;
+  }
+
   &__payments {
     display: flex;
     flex-direction: column;
@@ -90,6 +114,25 @@ import send from "@/assets/icons/card-send.svg";
   &__stats {
     display: flex;
     gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    &__header {
+      flex-direction: column;
+      width: 100%;
+      gap: 16px;
+    }
+    &__stats {
+      width: 100%;
+    }
+    &__filter {
+      width: 100%;
+    }
+  }
+  @media (max-width: 626px) {
+    &__dropdown {
+      width: 100%;
+    }
   }
 }
 

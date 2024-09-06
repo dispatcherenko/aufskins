@@ -106,6 +106,7 @@ onMounted(() => {
   width: 100%;
   max-width: 1696px;
   display: flex;
+  position: relative;
   flex-direction: column;
 }
 .offers__main-select {
@@ -155,6 +156,8 @@ onMounted(() => {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
+  position: relative;
   gap: 12px;
   transition: all 0.2s;
 }
@@ -263,18 +266,12 @@ onMounted(() => {
     width: 100%;
   }
   .offers__main-elems {
-    width: 100%;
+    width: 100vw;
+    left: -20px;
+    padding: 0 4px;
   }
   .title {
     margin-bottom: 20px;
-  }
-}
-@media (max-width: 772px) {
-  .offers__main-elems-elem {
-    width: 100%;
-  }
-  .offers__main-elems {
-    width: 100%;
   }
 }
 @media (max-width: 767px) {

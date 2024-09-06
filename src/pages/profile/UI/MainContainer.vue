@@ -2,24 +2,7 @@
   <div class="container">
     <div class="menu">
       <div class="menu__info">
-        <div class="menu__pfp-container">
-          <img :src="border" alt="border" class="menu__pfp-border" />
-          <svg
-            class="menu__pfp"
-            width="145"
-            height="145"
-            viewBox="0 0 152 152"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <mask id="svgmask1">
-              <path
-                d="M17.3756 152L0 109.929L12.1462 0H134.624L152 42.0714L139.854 152H17.3756Z"
-                fill="#ffffff"
-              />
-            </mask>
-            <image :href="pfp" width="152" height="152" mask="url(#svgmask1)" />
-          </svg>
-        </div>
+        <ProfilePicture size="156" />
         <p class="menu__nickname">Никнейм</p>
         <span class="menu__steam">
           <p class="menu__id-title">Steam ID</p>
@@ -33,7 +16,7 @@
         <Option :img="inventory" text="Инвентарь" />
         <Option :img="history" text="Сделки" />
         <span class="menu__divider"></span>
-        <Option :img="logout" text="Выйти" />
+        <Option :img="logout" text="Выйти" @click="modalStore.openModal" />
       </div>
     </div>
     <div class="info"><ProfileInfo /></div>
@@ -43,14 +26,16 @@
 <script setup>
 import Option from "@/shared/UI/Menu/Option.vue";
 import ProfileInfo from "./ProfileInfo/ProfileInfo.vue";
-import pfp from "./photo.jpg";
-import border from "./border.svg";
+import { useLogoutModalStore } from "@/features/auth/logout/store/index.js";
 
 import history from "@/assets/menu/history.svg";
 import inventory from "@/assets/menu/inventory.svg";
 import logout from "@/assets/menu/logout.svg";
 import notifications from "@/assets/menu/notification.svg";
 import profile from "@/assets/menu/profile.svg";
+import ProfilePicture from "@/shared/UI/Profile/ProfilePicture.vue";
+
+const modalStore = useLogoutModalStore();
 </script>
 
 <style lang="scss" scoped>
@@ -77,36 +62,6 @@ import profile from "@/assets/menu/profile.svg";
     flex-direction: column;
     justify-content: center;
     text-align: center;
-  }
-
-  &__pfp-container {
-    position: relative;
-    align-self: center;
-    margin-bottom: 16px;
-    height: 152px;
-    width: 152px;
-  }
-
-  &__pfp-border {
-    position: absolute;
-    top: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto auto;
-    z-index: 0;
-  }
-
-  &__pfp {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto auto;
-    z-index: 1;
   }
 
   &__nickname {
@@ -144,6 +99,19 @@ import profile from "@/assets/menu/profile.svg";
     display: flex;
     flex-direction: column;
     gap: 4px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    display: flex;
+    max-width: none;
+  }
+  .info {
+    width: 100%;
+  }
+  .menu {
+    display: none;
   }
 }
 </style>

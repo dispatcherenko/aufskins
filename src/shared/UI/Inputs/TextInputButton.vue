@@ -47,6 +47,10 @@ const props = defineProps({
   border: none;
   border-radius: 2px;
   background-color: #171424;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .button {

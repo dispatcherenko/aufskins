@@ -165,6 +165,7 @@
     align-items: start;
     justify-content: end;
     height: auto;
+    gap: 20px;
   }
   .footer-bottom__policy {
     align-items: start;

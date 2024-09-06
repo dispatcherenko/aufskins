@@ -1,7 +1,8 @@
 <template>
   <div class="app">
+    <LogoutModal />
     <LoadingScreen v-if="isLoading" />
-    <NavigationBar :button-action="toProfile" />
+    <NavigationBar :button-action="toProfile" :isLoggedIn="isLoggedIn" />
     <main class="app-main">
       <router-view />
     </main>
@@ -15,6 +16,12 @@ import FooterBar from "@/widgets/Footer/FooterBar.vue";
 import LoadingScreen from "@/shared/loading/LoadingScreen.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import LogoutModal from "./features/auth/logout/LogoutModal.vue";
+import { useUserStore } from "./entities/user/model";
+
+const userStore = useUserStore();
+
+let { isLoggedIn } = userStore;
 
 let isLoading = ref(false);
 const router = useRouter();
@@ -49,7 +56,7 @@ body::-webkit-scrollbar {
   width: 12px; /* ширина scrollbar */
 }
 body::-webkit-scrollbar-track {
-  background: #100e19; /* цвет дорожки */
+  display: none; /* цвет дорожки */
 }
 body::-webkit-scrollbar-thumb {
   background-color: #231f36; /* цвет плашки */

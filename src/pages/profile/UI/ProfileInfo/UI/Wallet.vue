@@ -42,7 +42,6 @@ import wallet from "@/assets/menu/wallet_white.svg";
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 340px;
   }
 
   &__left,
@@ -107,6 +106,55 @@ import wallet from "@/assets/menu/wallet_white.svg";
     width: 109px;
     height: 48px;
     gap: 0;
+  }
+
+  @media (max-width: 943px) {
+    &__container {
+      gap: 16px;
+    }
+    &__btn-red {
+      width: 100%;
+      max-width: 240px;
+    }
+    &__left {
+      margin: 0;
+      margin-left: 16px;
+      max-width: 302px;
+      width: 100%;
+    }
+    &__right {
+      margin: 0;
+      max-width: 370px;
+      width: 100%;
+      margin-right: 16px;
+
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 709px) {
+    &__container {
+      flex-direction: column;
+      height: 100%;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    &__left {
+      margin: 0;
+      max-width: none;
+    }
+    &__right {
+      margin: 0;
+      gap: 17px;
+      max-width: none;
+    }
+    &__btn-red {
+      width: 192px;
+    }
+    &__btn-black {
+    }
   }
 }
 </style>

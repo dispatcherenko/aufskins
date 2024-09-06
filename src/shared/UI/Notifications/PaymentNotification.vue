@@ -1,17 +1,17 @@
 <template>
   <span class="notification">
     <div class="left">
-      <img v-if="type === 'refill'" :src="down" alt="arrow" class="icon" />
+      <img v-if="type === 'deposit'" :src="down" alt="arrow" class="icon" />
       <img v-if="type === 'withdrawal'" :src="up" alt="arrow" class="icon" />
       <div>
-        <p v-if="type === 'refill'" class="text">Пополнение</p>
+        <p v-if="type === 'deposit'" class="text">Пополнение</p>
         <p v-if="type === 'withdrawal'" class="text">Вывод</p>
         <p v-if="result === 'success'" class="success">Успешно</p>
         <p v-if="result === 'error'">Ошибка</p>
       </div>
     </div>
     <div class="right">
-      <p v-if="type === 'refill'" class="text--g">+ {{ amount }} ₽</p>
+      <p v-if="type === 'deposit'" class="text--g">+ {{ amount }} ₽</p>
       <p v-if="type === 'withdrawal'" class="text--r">- {{ amount }} ₽</p>
       <p class="text">{{ date }}</p>
     </div>
@@ -66,7 +66,7 @@ const props = defineProps({
     color: #3bc76b;
   }
 
-  &--red {
+  &--r {
     color: #c41341;
   }
 }
@@ -82,5 +82,22 @@ const props = defineProps({
   color: #3bc76b;
   background-color: #3bc76b4d;
   border-radius: 2px;
+}
+
+@media (max-width: 1280px) {
+  .notification {
+    padding: 0 16px;
+  }
+  .icon {
+    display: none;
+  }
+  .right {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .text--g,
+  .text--r {
+    text-align: right;
+  }
 }
 </style>

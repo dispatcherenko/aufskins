@@ -102,5 +102,23 @@ let isSwitchActive = ref(false);
     display: flex;
     gap: 45px;
   }
+
+  @media (max-width: 943px) {
+    &__switch-w-text {
+      gap: 0;
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 626px) {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    &__right-wrapper {
+      margin: 0;
+    }
+  }
 }
 </style>

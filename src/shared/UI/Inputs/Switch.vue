@@ -30,6 +30,7 @@ const toggle = () => {
 <style lang="scss" scoped>
 .container {
   display: block;
+  width: 45px;
   position: relative;
   padding-left: 35px;
   margin-bottom: 12px;
