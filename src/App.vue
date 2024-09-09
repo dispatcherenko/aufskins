@@ -1,8 +1,13 @@
 <template>
   <div class="app">
     <LogoutModal />
+    <DepositModal />
+    <WithdrawalModal />
     <LoadingScreen v-if="isLoading" />
-    <NavigationBar :button-action="toProfile" :isLoggedIn="isLoggedIn" />
+    <NavigationBar
+      :button-action="toProfile"
+      :isLoggedIn="userStore.isLoggedIn"
+    />
     <main class="app-main">
       <router-view />
     </main>
@@ -18,10 +23,10 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import LogoutModal from "./features/auth/logout/LogoutModal.vue";
 import { useUserStore } from "./entities/user/model";
+import DepositModal from "./features/wallet/DepositModal.vue";
+import WithdrawalModal from "./features/wallet/WithdrawalModal.vue";
 
 const userStore = useUserStore();
-
-let { isLoggedIn } = userStore;
 
 let isLoading = ref(false);
 const router = useRouter();
@@ -66,7 +71,8 @@ p,
 h1,
 h2,
 h3,
-h4 {
+h4,
+label {
   color: white;
   line-height: normal;
 }
@@ -75,7 +81,6 @@ a {
   transition: all 0.2s;
   color: white;
   cursor: pointer;
-  padding: 5px;
 }
 a:hover {
   background-color: #231f36;
@@ -105,6 +110,39 @@ h4 {
   font-weight: 700;
   letter-spacing: -0.30000001192092896px;
   text-align: left;
+}
+.subheader {
+  font-family: Geometria;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+
+  @media (max-width: 1280px) {
+    font-size: 18px;
+  }
+}
+.footnote {
+  font-family: Geometria;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #ffffff80;
+}
+.smallfootnote {
+  font-family: Geometria;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #ffffff80;
+}
+.grey {
+  color: #ffffff80;
+}
+.body {
+  font-family: Geometria;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
 }
 .app {
   width: 100%;

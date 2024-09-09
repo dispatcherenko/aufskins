@@ -25,7 +25,7 @@ const props = defineProps({
   font-weight: 500;
   line-height: 24px;
   text-align: left;
-  color: #ffffff40;
+  color: #ffffff;
 
   box-sizing: border-box;
   display: flex;

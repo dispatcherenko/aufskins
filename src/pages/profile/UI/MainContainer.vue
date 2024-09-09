@@ -26,7 +26,7 @@
 <script setup>
 import Option from "@/shared/UI/Menu/Option.vue";
 import ProfileInfo from "./ProfileInfo/ProfileInfo.vue";
-import { useLogoutModalStore } from "@/features/auth/logout/store/index.js";
+import { useLogoutModalStore } from "@/features/auth/store/index.js";
 
 import history from "@/assets/menu/history.svg";
 import inventory from "@/assets/menu/inventory.svg";

@@ -1,5 +1,5 @@
 <template>
-  <button class="button"><img class="img" :src="img" alt="icon" /></button>
+  <a class="button"><img class="img" :src="img" alt="icon" /></a>
 </template>
 
 <script setup>
@@ -15,6 +15,8 @@ const props = defineProps({
   height: 48px;
   background-color: #c41341;
   border-radius: 50%;
+
+  display: flex;
 
   transition: all 0.2s;
 

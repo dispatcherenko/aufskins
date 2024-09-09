@@ -4,9 +4,9 @@
       <div class="upper">
         <div class="title-wrap">
           <p class="title">Хотите выйти из аккаунта?</p>
-          <button class="exit" @click="modalStore.closeModal">
+          <a class="exit" @click="modalStore.closeModal">
             <Exit class="cross" />
-          </button>
+          </a>
         </div>
         <p class="text">
           Если захотите воспользоваться сервисом, то вам придется снова войти
@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { useLogoutModalStore } from "@/features/auth/logout/store/index.js";
+import { useLogoutModalStore } from "@/features/auth/store/index.js";
 import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import Modal from "@/shared/UI/Modal/Modal.vue";
 import Exit from "@/assets/icons/exit.svg?component";
@@ -68,8 +68,9 @@ const handleLogout = () => {
 .exit {
   background: transparent;
   border: none;
-  width: 13px;
-  height: 13px;
+  width: 16px;
+  height: 16px;
+  padding: 0;
 }
 .cross {
   color: #ffffff80;

@@ -1,10 +1,10 @@
 <template>
-  <button class="button" :class="class">
+  <a class="button" :class="class">
     <img :src="img" :alt="alt" />
     <p class="button__title">
       {{ text }} <span class="button__title--add">{{ addText }}</span>
     </p>
-  </button>
+  </a>
 </template>
 
 <script setup>
@@ -19,6 +19,7 @@ const props = defineProps({
 
 <style scoped>
 .button {
+  padding: 0;
   width: 259px;
   height: 56px;
   background-color: rgba(196, 19, 65, 1);

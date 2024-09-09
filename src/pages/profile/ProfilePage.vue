@@ -10,6 +10,15 @@
 import HugeBuys from "@/widgets/HugeBuys/HugeBuys.vue";
 import MainContainer from "./UI/MainContainer.vue";
 import ChatButton from "@/widgets/ChatButton/ChatButton.vue";
+
+import { useUserStore } from "@/entities/user/model";
+import { onMounted } from "vue";
+
+const userStore = useUserStore();
+
+onMounted(() => {
+  userStore.setLoggedIn();
+});
 </script>
 
 <style lang="scss">

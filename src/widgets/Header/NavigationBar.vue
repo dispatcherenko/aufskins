@@ -22,14 +22,14 @@
         ></Button2>
         <Burger />
 
-        <div class="header-menu__profile">
+        <div v-if="isLoggedIn" class="header-menu__profile">
           <div class="header-menu__links">
             <a class="header-menu__link" href="/"><Cart />Корзина</a>
             <a class="header-menu__link" href="/"><Messages />Чат</a>
             <div class="header-menu__wallet">
               <Wallet />
               <p>1 000 ₽</p>
-              <a href="/">+</a>
+              <a :onclick="modalStore.openModal">+</a>
             </div>
           </div>
           <div class="header-menu__right">
@@ -46,7 +46,6 @@
 import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import Steam from "@/assets/nav/steam.svg";
 import Burger from "@/features/sidemenu/UI/Burger.vue";
-import SideMenu from "@/features/sidemenu/UI/SideMenu.vue";
 import LocaleDropdown from "@/features/localiztion/UI/LocaleDropdown.vue";
 import ProfilePicture from "@/shared/UI/Profile/ProfilePicture.vue";
 
@@ -55,11 +54,14 @@ import Messages from "@/assets/icons/messages.svg?component";
 import Wallet from "@/assets/menu/wallet.svg?component";
 import Arrow from "@/assets/nav/arrowDown.svg?component";
 
+import { useDepositModalStore } from "@/features/wallet/store";
+
 const props = defineProps({
   buttonAction: Function,
+  isLoggedIn: Boolean,
 });
 
-const isLoggedIn = true;
+const modalStore = useDepositModalStore();
 </script>
 
 <style scoped>

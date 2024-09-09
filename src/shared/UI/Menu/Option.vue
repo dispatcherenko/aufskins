@@ -1,10 +1,10 @@
 <template>
-  <button class="button" :class="{ 'button--active': selected }">
+  <a class="button" :class="{ 'button--active': selected }">
     <img class="button__img" :src="img" :alt="alt" />
     <p class="button__text">
       {{ text }}
     </p>
-  </button>
+  </a>
 </template>
 
 <script setup>

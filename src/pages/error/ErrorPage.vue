@@ -17,7 +17,7 @@ const buttonAction = () => {};
 
 <style lang="css" scoped>
 .error {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

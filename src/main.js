@@ -6,6 +6,7 @@ import ErrorPage from "./pages/error/ErrorPage.vue";
 import ProfilePage from "./pages/profile/ProfilePage.vue";
 import { autoAnimatePlugin } from "@formkit/auto-animate/vue";
 import { createPinia } from "pinia";
+import Links from "./pages/Links.vue";
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -25,6 +26,11 @@ const routes = [
     path: "/profile",
     component: ProfilePage,
     name: "profile",
+  },
+  {
+    path: "/links",
+    component: Links,
+    name: "links",
   },
 ];
 

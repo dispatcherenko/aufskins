@@ -1,10 +1,10 @@
 <template>
-  <a class="button" :class="class">
+  <button class="button" :class="class">
     <img :src="img" :alt="alt" />
     <p class="button__title">
       {{ text }} <span class="button__title--add">{{ addText }}</span>
     </p>
-  </a>
+  </button>
 </template>
 
 <script setup>
@@ -43,6 +43,10 @@ const props = defineProps({
 .button:disabled {
   background-color: #ffffff1a;
   cursor: default;
+
+  p {
+    color: #ffffff80;
+  }
 }
 @media (max-width: 1280px) {
   .button__title--add {

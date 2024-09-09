@@ -16,8 +16,17 @@
         </div>
       </div>
       <div class="wallet__right">
-        <Button2 class="wallet__btn-red" :img="wallet" text="Пополнить" />
-        <Button2 class="wallet__btn-black" text="Вывести" />
+        <Button2
+          class="wallet__btn-red"
+          :img="wallet"
+          text="Пополнить"
+          :onclick="depositModal.openModal"
+        />
+        <Button2
+          class="wallet__btn-black"
+          text="Вывести"
+          :onclick="withdrawalModal.openModal"
+        />
       </div>
     </div>
   </div>
@@ -27,6 +36,12 @@
 import lock from "./lock.svg";
 import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import wallet from "@/assets/menu/wallet_white.svg";
+
+import { useDepositModalStore } from "@/features/wallet/store";
+import { useWithdrawalModalStore } from "@/features/wallet/store";
+
+const depositModal = useDepositModalStore();
+const withdrawalModal = useWithdrawalModalStore();
 </script>
 
 <style lang="scss" scoped>

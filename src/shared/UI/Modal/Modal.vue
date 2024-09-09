@@ -44,10 +44,10 @@ const props = defineProps({ isOpen: Boolean, close: Function });
 
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 
-.modal-fade-enter,
+.modal-fade-enter-from,
 .modal-fade-leave-to {
   opacity: 0;
 }

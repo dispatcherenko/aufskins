@@ -25,7 +25,7 @@ const componentsArray = [
         h("br"),
         "любите, только на AUFSKINS",
       ]),
-      h("button", { class: "slide-info__button" }, "Перейти в раздел"),
+      h("a", { class: "slide-info__button" }, "Перейти в раздел"),
     ]),
   ]),
   h("div", { class: "slide-wrapper" }, [
@@ -37,7 +37,7 @@ const componentsArray = [
     h("div", { class: "slide-info" }, [
       h("h1", { class: "slide-info__title" }, "DOTA 2"),
       h("p", { class: "slide-info__text" }, ["Инфа про доту 2", h("br")]),
-      h("button", { class: "slide-info__button" }, "Перейти в раздел"),
+      h("a", { class: "slide-info__button" }, "Перейти в раздел"),
     ]),
   ]),
   h("div", { class: "slide-wrapper" }, [
@@ -49,7 +49,7 @@ const componentsArray = [
     h("div", { class: "slide-info" }, [
       h("h1", { class: "slide-info__title" }, "RUST"),
       h("p", { class: "slide-info__text" }, ["Инфа про Rust", h("br")]),
-      h("button", { class: "slide-info__button" }, "Перейти в раздел"),
+      h("a", { class: "slide-info__button" }, "Перейти в раздел"),
     ]),
   ]),
   h("div", { class: "slide-wrapper" }, [
@@ -61,7 +61,7 @@ const componentsArray = [
     h("div", { class: "slide-info" }, [
       h("h1", { class: "slide-info__title" }, "Tesm Fortress2"),
       h("p", { class: "slide-info__text" }, ["Инфа про tf2", h("br")]),
-      h("button", { class: "slide-info__button" }, "Перейти в раздел"),
+      h("a", { class: "slide-info__button" }, "Перейти в раздел"),
     ]),
   ]),
 ];
@@ -100,16 +100,21 @@ const componentsArray = [
   margin-bottom: 25px;
 }
 :deep .slide-info__button {
+  padding: 0;
   width: 214px;
   height: 56px;
-  background: #c41341;
-  text-align: center;
-  clip-path: polygon(6% 0, 90% 0, 100% 30%, 94% 100%, 10% 100%, 0 70%);
-  cursor: pointer;
-  border: none;
+  background-color: rgba(196, 19, 65, 1);
   outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   color: #fff;
   font-size: 18px;
+  font-weight: 500;
+  clip-path: polygon(11% 0, 93% 0, 100% 69%, 89% 100%, 7% 100%, 0 27%);
+  cursor: pointer;
 
   transition: all 0.2s;
 }
