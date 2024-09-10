@@ -19,18 +19,18 @@
         />
       </div>
     </div>
-    <paginate
-      :page-count="pageCount"
-      :page-range="3"
-      :margin-pages="2"
-      :click-handler="changePage"
-      :prev-text="`<img src='src/assets/control/leftarrow-s.svg' alt='Previous' />`"
-      :next-text="`<img src='src/assets/control/rightarrow-s.svg' alt='Next' />`"
-      :container-class="'pagination'"
-      :page-class="'page-item'"
-    >
-    </paginate>
   </div>
+  <paginate
+    :page-count="pageCount"
+    :page-range="3"
+    :margin-pages="2"
+    :click-handler="changePage"
+    :prev-text="`<img src='src/assets/control/leftarrow-s.svg' alt='Previous' />`"
+    :next-text="`<img src='src/assets/control/rightarrow-s.svg' alt='Next' />`"
+    :container-class="'pagination'"
+    :page-class="'page-item'"
+  >
+  </paginate>
 </template>
 
 <script setup>
@@ -122,6 +122,7 @@ const changePage = (pageNum) => {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 756px;
 
   &__header {
     display: flex;
@@ -139,9 +140,11 @@ const changePage = (pageNum) => {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    height: 100%;
   }
 
   @media (max-width: 1280px) {
+    height: 100%;
     &__wrapper {
     }
   }

@@ -20,7 +20,7 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .button {
-  width: 234px;
+  width: 100%;
   height: 48px;
   border: 0;
   padding: 12px 16px 12px 16px;

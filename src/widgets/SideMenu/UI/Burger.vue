@@ -1,20 +1,24 @@
 <template>
-  <div @click="burgerCross = !burgerCross" class="header-menu__burger">
+  <div @click="manageBurger" class="header-menu__burger">
     <span
       class="header-menu__burger-line"
-      :class="burgerCross ? 'top-line' : ''"
+      :class="menuStore.isOpen ? 'top-line' : ''"
     ></span>
     <span
       class="header-menu__burger-line"
-      :class="burgerCross ? 'bottom-line' : ''"
+      :class="menuStore.isOpen ? 'bottom-line' : ''"
     ></span>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useSideMenuStore } from "../store";
 
-const burgerCross = ref(false);
+const menuStore = useSideMenuStore();
+
+const manageBurger = () => {
+  menuStore.manageMenu();
+};
 </script>
 
 <style scoped>

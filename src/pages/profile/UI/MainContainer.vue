@@ -22,7 +22,7 @@
           :selected="options.notifications"
           @click="changeOption('notifications')"
         />
-        <span class="menu__divider"></span>
+        <span class="divider"></span>
         <Option
           :img="inventory"
           text="Инвентарь"
@@ -35,7 +35,7 @@
           :selected="options.history"
           @click="changeOption('history')"
         />
-        <span class="menu__divider"></span>
+        <span class="divider"></span>
         <Option :img="logout" text="Выйти" @click="modalStore.openModal" />
       </div>
     </div>
@@ -129,12 +129,6 @@ const changeOption = (newOption) => {
     display: flex;
     flex-direction: column;
     position: relative;
-  }
-
-  &__divider {
-    width: 186px;
-    height: 1px;
-    background: var(--white-10, #ffffff1a);
   }
 
   &__steam {

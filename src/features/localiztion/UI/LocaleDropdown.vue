@@ -73,16 +73,17 @@ onUnmounted(() => {
   position: relative;
   display: flex;
   justify-content: space-between;
-  width: 141px;
+  width: auto;
 }
 
 .dropdown-header {
   display: flex;
-  width: 100%;
+  gap: 12px;
+  width: auto;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  padding: 12px 16px;
+  padding: 12px 0;
   border-radius: 4px;
 }
 

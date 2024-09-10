@@ -20,6 +20,7 @@
           addText="через Steam"
           :onclick="buttonAction"
         ></Button2>
+
         <Burger />
 
         <div v-if="isLoggedIn" class="header-menu__profile">
@@ -45,7 +46,6 @@
 <script setup>
 import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import Steam from "@/assets/nav/steam.svg";
-import Burger from "@/features/sidemenu/UI/Burger.vue";
 import LocaleDropdown from "@/features/localiztion/UI/LocaleDropdown.vue";
 import ProfilePicture from "@/shared/UI/Profile/ProfilePicture.vue";
 
@@ -55,6 +55,8 @@ import Wallet from "@/assets/menu/wallet.svg?component";
 import Arrow from "@/assets/nav/arrowDown.svg?component";
 
 import { useDepositModalStore } from "@/features/wallet/store";
+import { useSideMenuStore } from "@/widgets/SideMenu/store/index";
+import Burger from "../SideMenu/UI/Burger.vue";
 
 const props = defineProps({
   buttonAction: Function,
@@ -62,6 +64,7 @@ const props = defineProps({
 });
 
 const modalStore = useDepositModalStore();
+const menuStore = useSideMenuStore();
 </script>
 
 <style scoped>
@@ -76,6 +79,8 @@ const modalStore = useDepositModalStore();
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  z-index: 100;
 }
 .header__wrapper {
   width: 100%;

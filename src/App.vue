@@ -1,9 +1,12 @@
 <template>
   <div class="app">
+    <LoadingScreen v-if="isLoading" />
+
     <LogoutModal />
     <DepositModal />
     <WithdrawalModal />
-    <LoadingScreen v-if="isLoading" />
+
+    <SideMenu />
     <NavigationBar
       :button-action="toProfile"
       :isLoggedIn="userStore.isLoggedIn"
@@ -19,14 +22,17 @@
 import NavigationBar from "@/widgets/Header/NavigationBar.vue";
 import FooterBar from "@/widgets/Footer/FooterBar.vue";
 import LoadingScreen from "@/shared/loading/LoadingScreen.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import LogoutModal from "./features/auth/logout/LogoutModal.vue";
 import { useUserStore } from "./entities/user/model";
 import DepositModal from "./features/wallet/DepositModal.vue";
 import WithdrawalModal from "./features/wallet/WithdrawalModal.vue";
+import SideMenu from "./widgets/SideMenu/SideMenu.vue";
+import { useSideMenuStore } from "./widgets/SideMenu/store";
 
 const userStore = useUserStore();
+const menuStore = useSideMenuStore();
 
 let isLoading = ref(false);
 const router = useRouter();
@@ -168,24 +174,20 @@ h4 {
   list-style-type: none;
   gap: 5px;
 }
-
 .page-item {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 2px;
 }
-
 .page-item.active {
   background-color: #231f36;
 }
-
 .page-item.disabled {
   a {
     color: #ffffff80;
   }
 }
-
 .page-link {
   height: 44px;
   width: 44px;
@@ -193,6 +195,13 @@ h4 {
   justify-content: center;
   align-items: center;
   padding: 10px 12px;
+}
+
+.divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--white-10, #ffffff1a);
 }
 
 @media (max-width: 1280px) {
