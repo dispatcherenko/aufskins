@@ -3,7 +3,7 @@
     <input
       class="input"
       :placeholder="placeholder"
-      type="text"
+      :type="type"
       :name="name"
       :id="id"
     />
@@ -20,6 +20,7 @@ const props = defineProps({
   placeholder: String,
   buttonText: String,
   action: Function,
+  type: { type: String, default: "text" },
 });
 </script>
 
@@ -36,7 +37,7 @@ const props = defineProps({
   font-weight: 500;
   line-height: 24px;
   text-align: left;
-  color: #ffffff40;
+  color: #ffffff;
 
   box-sizing: border-box;
   display: flex;

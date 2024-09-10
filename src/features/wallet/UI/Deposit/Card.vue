@@ -1,7 +1,7 @@
 <template>
   <p class="subheader">Информация</p>
   <form class="info__form">
-    <TextInput placeholder="Сумма пополнения" />
+    <TextInput type="number" placeholder="Сумма пополнения" />
     <p class="info__sfn smallfootnote">Минимальная сумма — 100 ₽</p>
     <div class="info__buttons">
       <ButtonXS class="info__button" text="500" add="₽" />
@@ -41,7 +41,7 @@ import ButtonXS from "@/shared/UI/Buttons/ButtonXS.vue";
 import Checkbox from "@/shared/UI/Checkbox/Checkbox.vue";
 import TextInput from "@/shared/UI/Inputs/TextInput.vue";
 import TextInputButton from "@/shared/UI/Inputs/TextInputButton.vue";
-
+import Caution from "@/assets/icons/caution.svg?component";
 import { ref } from "vue";
 
 const isChecked = ref(false);

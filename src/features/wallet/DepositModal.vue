@@ -11,6 +11,7 @@
             title="Банковская карта"
             text="Ничего особенного: быстро, удобно, с любой российской карты"
             :img="card"
+            :img-off="cardOff"
             @click="changeOption('card')"
             :is-selected="options.card"
           />
@@ -19,6 +20,7 @@
             add="(TRC20)"
             text="Для тех, кто вовремя вложился в Биткоин"
             :img="bitcoin"
+            :img-off="bitcoinOff"
             @click="changeOption('tether')"
             :is-selected="options.tether"
           />
@@ -26,6 +28,7 @@
             title="СБП"
             text="Прямой перевод по номеру телефона"
             :img="spb"
+            :img-off="spbOff"
             @click="changeOption('sbp')"
             :is-selected="options.sbp"
           />
@@ -33,13 +36,14 @@
             title="Юмани"
             text="Если онлайн-кошелек удобнее, чем банковская карта"
             :img="wallet"
+            :img-off="walletOff"
             @click="changeOption('wallet')"
             :is-selected="options.wallet"
           />
         </div>
       </div>
       <div class="deposit__info info">
-        <Card v-if="options.card" />
+        <Card />
       </div>
     </div>
   </Modal>
@@ -50,6 +54,12 @@ import card from "@/assets/payment/card.svg?url";
 import bitcoin from "@/assets/payment/bitcoin.svg?url";
 import spb from "@/assets/payment/sbp.svg?url";
 import wallet from "@/assets/payment/wallet.svg?url";
+
+import cardOff from "@/assets/payment/card-off.svg?url";
+import bitcoinOff from "@/assets/payment/bitcoin-off.svg?url";
+import spbOff from "@/assets/payment/sbp-off.svg?url";
+import walletOff from "@/assets/payment/wallet-off.svg?url";
+
 import Exit from "@/assets/icons/exit.svg?component";
 import PaymentMethod from "@/shared/UI/Menu/PaymentMethod.vue";
 import Modal from "@/shared/UI/Modal/Modal.vue";
@@ -84,6 +94,9 @@ const changeOption = (newOption) => {
   display: grid;
   grid-template-columns: 426px 560px;
 
+  max-height: 90vh;
+  overflow-y: auto;
+
   @media (max-width: 1280px) {
     grid-template-columns: none;
     grid-template-rows: auto auto;
@@ -92,7 +105,7 @@ const changeOption = (newOption) => {
   }
 
   @media (max-width: 768px) {
-    width: 95vw;
+    max-width: 95vw;
     grid-template-rows: auto auto;
   }
 }

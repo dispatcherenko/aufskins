@@ -104,15 +104,12 @@
   justify-content: space-between;
   align-items: center;
 }
-.footer-bottom__info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+.footer-bottom__info,
 .footer-bottom__policy {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 32px;
 }
 .footer-bottom__info-text {
   font-size: 14px;
@@ -142,10 +139,12 @@
   .footer-bottom__info {
     flex-direction: column;
     align-items: start;
+    gap: 5px;
   }
   .footer-bottom__policy {
     flex-direction: column;
     align-items: end;
+    gap: 5px;
   }
 }
 @media (max-width: 768px) {

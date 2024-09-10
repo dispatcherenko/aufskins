@@ -267,7 +267,7 @@ onMounted(() => {
   }
   .offers__main-elems {
     width: 100vw;
-    left: -20px;
+    left: -23px;
     padding: 0 4px;
   }
   .title {

@@ -2,7 +2,7 @@
   <input
     class="input"
     :placeholder="placeholder"
-    type="text"
+    :type="type"
     :name="name"
     :id="id"
   />
@@ -13,6 +13,7 @@ const props = defineProps({
   name: String,
   id: String,
   placeholder: String,
+  type: { type: String, default: "text" },
 });
 </script>
 

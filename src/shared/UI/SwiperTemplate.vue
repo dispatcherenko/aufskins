@@ -19,13 +19,13 @@
       <img
         @click="() => fslider.slidePrev()"
         class="swiper__left"
-        src="@/assets/mainpage/leftarrow.svg"
+        src="@/assets/control/leftarrow.svg"
         alt="arrow"
       />
       <img
         @click="() => fslider.slideNext()"
         class="swiper__right"
-        src="@/assets/mainpage/rightarrow.svg"
+        src="@/assets/control/rightarrow.svg"
         alt="arrow"
       />
       <div class="swiper__carousel">

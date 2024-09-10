@@ -10,7 +10,8 @@
         {{ text }}
       </p>
     </div>
-    <img :src="img" alt="method" class="card__img" />
+    <img v-if="isSelected" :src="img" alt="method" class="card__img" />
+    <img v-if="!isSelected" :src="imgOff" alt="method" class="card__img" />
   </a>
 </template>
 
@@ -22,6 +23,7 @@ const props = defineProps({
   text: String,
   add: String,
   img: String,
+  imgOff: String,
   isSelected: Boolean,
 });
 </script>

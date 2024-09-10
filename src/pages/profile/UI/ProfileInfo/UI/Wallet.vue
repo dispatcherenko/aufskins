@@ -165,10 +165,15 @@ const withdrawalModal = useWithdrawalModalStore();
       gap: 17px;
       max-width: none;
     }
-    &__btn-red {
-      width: 192px;
-    }
+
     &__btn-black {
+      min-width: 109px;
+    }
+  }
+
+  @media (max-width: 453px) {
+    &__btn-red {
+      max-width: none;
     }
   }
 }

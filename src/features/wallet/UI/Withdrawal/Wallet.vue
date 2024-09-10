@@ -2,7 +2,7 @@
   <p class="subheader">Данные</p>
   <form class="info__form">
     <div class="info__upper">
-      <TextInput placeholder="Номер кошелька" />
+      <TextInput placeholder="Номер кошелька" type="number" />
       <div class="">
         <div class="info__upper-field">
           <TextInputButton
@@ -10,6 +10,7 @@
             class="info__upper-input"
             placeholder="Сумма вывода"
             button-text="Максимум"
+            type="number"
           />
         </div>
         <p class="info__sfn smallfootnote">Ваш баланс: 5 678 ₽</p>

@@ -13,6 +13,7 @@
             title="Банковская карта"
             text="Ничего особенного: быстро, удобно, с любой российской карты"
             :img="card"
+            :img-off="cardOff"
             @click="changeOption('card')"
           />
           <PaymentMethod
@@ -22,6 +23,7 @@
             add="(TRC20)"
             text="Для тех, кто вовремя вложился в Биткоин"
             :img="bitcoin"
+            :img-off="bitcoinOff"
             @click="changeOption('tether')"
           />
           <PaymentMethod
@@ -30,6 +32,7 @@
             title="Юмани"
             text="Если онлайн-кошелек удобнее, чем банковская карта"
             :img="wallet"
+            :img-off="walletOff"
             @click="changeOption('wallet')"
           />
         </div>
@@ -47,6 +50,11 @@
 import card from "@/assets/payment/card.svg?url";
 import bitcoin from "@/assets/payment/bitcoin.svg?url";
 import wallet from "@/assets/payment/wallet.svg?url";
+
+import cardOff from "@/assets/payment/card-off.svg?url";
+import bitcoinOff from "@/assets/payment/bitcoin-off.svg?url";
+import walletOff from "@/assets/payment/wallet-off.svg?url";
+
 import { useWithdrawalModalStore } from "@/features/wallet/store/index.js";
 import PaymentMethod from "@/shared/UI/Menu/PaymentMethod.vue";
 import Modal from "@/shared/UI/Modal/Modal.vue";
@@ -80,6 +88,9 @@ const changeOption = (newOption) => {
   position: relative;
   display: grid;
   grid-template-columns: 426px 560px;
+
+  max-height: 80vh;
+  overflow-y: auto;
 
   @media (max-width: 1280px) {
     grid-template-columns: none;

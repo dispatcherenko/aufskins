@@ -10,22 +10,46 @@
         </span>
       </div>
       <div class="menu__buttons">
-        <Option :img="profile" text="Профиль" :selected="true" />
-        <Option :img="notifications" text="Уведомления" />
+        <Option
+          :img="profile"
+          text="Профиль"
+          :selected="options.profile"
+          @click="changeOption('profile')"
+        />
+        <Option
+          :img="notifications"
+          text="Уведомления"
+          :selected="options.notifications"
+          @click="changeOption('notifications')"
+        />
         <span class="menu__divider"></span>
-        <Option :img="inventory" text="Инвентарь" />
-        <Option :img="history" text="Сделки" />
+        <Option
+          :img="inventory"
+          text="Инвентарь"
+          :selected="options.inventory"
+          @click="changeOption('inventory')"
+        />
+        <Option
+          :img="history"
+          text="Сделки"
+          :selected="options.history"
+          @click="changeOption('history')"
+        />
         <span class="menu__divider"></span>
         <Option :img="logout" text="Выйти" @click="modalStore.openModal" />
       </div>
     </div>
-    <div class="info"><ProfileInfo /></div>
+    <div class="info">
+      <ProfileInfo v-if="options.profile" />
+      <NotificationsSection v-if="options.notifications" />
+    </div>
   </div>
 </template>
 
 <script setup>
 import Option from "@/shared/UI/Menu/Option.vue";
 import ProfileInfo from "./ProfileInfo/ProfileInfo.vue";
+import NotificationsSection from "./Notifications/NotificationsSection.vue";
 import { useLogoutModalStore } from "@/features/auth/store/index.js";
 
 import history from "@/assets/menu/history.svg";
@@ -34,8 +58,26 @@ import logout from "@/assets/menu/logout.svg";
 import notifications from "@/assets/menu/notification.svg";
 import profile from "@/assets/menu/profile.svg";
 import ProfilePicture from "@/shared/UI/Profile/ProfilePicture.vue";
+import { ref } from "vue";
 
 const modalStore = useLogoutModalStore();
+
+const options = ref({
+  profile: true,
+  notifications: false,
+  inventory: false,
+  history: false,
+});
+
+const changeOption = (newOption) => {
+  options.value = {
+    profile: false,
+    notifications: false,
+    inventory: false,
+    history: false,
+  };
+  options.value[newOption] = true;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -106,6 +148,7 @@ const modalStore = useLogoutModalStore();
   .container {
     display: flex;
     max-width: none;
+    margin-bottom: 80px;
   }
   .info {
     width: 100%;

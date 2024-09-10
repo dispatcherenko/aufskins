@@ -3,8 +3,8 @@
   <form class="info__form">
     <div class="info__upper">
       <div class="field">
-        <TextInput placeholder="Номер карты" class="number" />
-        <TextInput placeholder="Срок действия" class="date" />
+        <TextInput type="number" placeholder="Номер карты" class="number" />
+        <TextInput type="text" placeholder="Срок действия" class="date" />
       </div>
       <TextInput placeholder="Владелец карты" />
       <div class="">
@@ -14,6 +14,7 @@
             class="info__upper-input"
             placeholder="Сумма вывода"
             button-text="Максимум"
+            type="number"
           />
         </div>
         <p class="info__sfn smallfootnote">Ваш баланс: 5 678 ₽</p>

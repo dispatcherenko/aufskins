@@ -127,6 +127,10 @@ h4 {
   font-weight: 500;
   line-height: 18px;
   color: #ffffff80;
+  height: 100%;
+
+  overflow: hidden;
+  text-overflow: clip;
 }
 .smallfootnote {
   font-family: Geometria;
@@ -157,12 +161,53 @@ h4 {
   width: 100%;
 }
 
-@media (max-width: 1279px) {
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  list-style-type: none;
+  gap: 5px;
+}
+
+.page-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.page-item.active {
+  background-color: #231f36;
+}
+
+.page-item.disabled {
+  a {
+    color: #ffffff80;
+  }
+}
+
+.page-link {
+  height: 44px;
+  width: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 12px;
+}
+
+@media (max-width: 1280px) {
   .app-main {
     width: 100%;
   }
   .title {
     font-size: 28px;
+  }
+  .pagination {
+    width: 100%;
+    display: none;
+    justify-content: end;
+    list-style-type: none;
+    gap: 5px;
   }
 }
 </style>

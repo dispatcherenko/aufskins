@@ -15,6 +15,7 @@
             class="info__upper-input"
             placeholder="Сумма вывода"
             button-text="Максимум"
+            type="number"
           />
           <span class="info__currency">
             <Exchange />
