@@ -35,16 +35,7 @@
         Team Fortress 2
       </p>
     </div>
-    <div class="offers__main-elems" v-auto-animate>
-      <div
-        v-for="skin in skins"
-        :key="skin.id"
-        class="offers__main-elems-elem"
-        v-auto-animate
-      >
-        <SkinCard :skin="skin" />
-      </div>
-    </div>
+    <ItemsList :items="skins" />
 
     <Button1 class="offers__button" text="Посмотреть все товары" />
   </section>
@@ -53,6 +44,7 @@
 <script setup>
 import SkinCard from "@/entities/skin/UI/ItemCard.vue";
 import Button1 from "@/shared/UI/Buttons/Button1.vue";
+import ItemsList from "@/widgets/ItemsList/ItemsList.vue";
 
 import axios from "axios";
 import { onMounted, ref } from "vue";

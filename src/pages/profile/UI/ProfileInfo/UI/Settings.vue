@@ -34,6 +34,7 @@ let isSwitchActive = ref(false);
               </p>
             </div>
             <Switch
+              class="set__switch"
               name="notifications"
               id="notifications"
               :is-active="isSwitchActive"
@@ -101,6 +102,10 @@ let isSwitchActive = ref(false);
   &__switch-w-text {
     display: flex;
     gap: 45px;
+  }
+  &__switch {
+    width: 44px;
+    height: 28px;
   }
 
   @media (max-width: 943px) {

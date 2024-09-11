@@ -5,6 +5,9 @@
     <LogoutModal />
     <DepositModal />
     <WithdrawalModal />
+    <SellListModal />
+    <ApiModal />
+    <SuccessModal />
 
     <SideMenu />
     <NavigationBar
@@ -22,17 +25,23 @@
 import NavigationBar from "@/widgets/Header/NavigationBar.vue";
 import FooterBar from "@/widgets/Footer/FooterBar.vue";
 import LoadingScreen from "@/shared/loading/LoadingScreen.vue";
-import { ref, watch } from "vue";
+
+import { onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
+
 import LogoutModal from "./features/auth/logout/LogoutModal.vue";
 import { useUserStore } from "./entities/user/model";
+
 import DepositModal from "./features/wallet/DepositModal.vue";
 import WithdrawalModal from "./features/wallet/WithdrawalModal.vue";
+
 import SideMenu from "./widgets/SideMenu/SideMenu.vue";
-import { useSideMenuStore } from "./widgets/SideMenu/store";
+
+import SellListModal from "./pages/profile/UI/Inventory/UI/SellListModal.vue";
+import ApiModal from "./pages/profile/UI/Inventory/UI/ApiModal.vue";
+import SuccessModal from "./pages/profile/UI/Inventory/UI/SuccessModal.vue";
 
 const userStore = useUserStore();
-const menuStore = useSideMenuStore();
 
 let isLoading = ref(false);
 const router = useRouter();
@@ -63,13 +72,13 @@ body {
   background-color: #100e19;
 }
 
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 12px; /* ширина scrollbar */
 }
-body::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   display: none; /* цвет дорожки */
 }
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: #231f36; /* цвет плашки */
 }
 
@@ -133,7 +142,6 @@ h4 {
   font-weight: 500;
   line-height: 18px;
   color: #ffffff80;
-  height: 100%;
 
   overflow: hidden;
   text-overflow: clip;
@@ -147,6 +155,9 @@ h4 {
 }
 .grey {
   color: #ffffff80;
+}
+.red {
+  color: #c41341;
 }
 .body {
   font-family: Geometria;

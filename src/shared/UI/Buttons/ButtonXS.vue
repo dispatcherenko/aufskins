@@ -18,6 +18,8 @@ const props = defineProps({
 .button {
   display: flex;
   padding: 12px 6px;
+  justify-content: center;
+  align-items: center;
   background-color: #c41341;
   border-radius: 2px;
 

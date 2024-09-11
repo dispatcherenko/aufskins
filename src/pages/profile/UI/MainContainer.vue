@@ -42,6 +42,7 @@
     <div class="info">
       <ProfileInfo v-if="options.profile" />
       <NotificationsSection v-if="options.notifications" />
+      <InventorySection v-if="options.inventory" />
     </div>
   </div>
 </template>
@@ -59,13 +60,14 @@ import notifications from "@/assets/menu/notification.svg";
 import profile from "@/assets/menu/profile.svg";
 import ProfilePicture from "@/shared/UI/Profile/ProfilePicture.vue";
 import { ref } from "vue";
+import InventorySection from "./Inventory/InventorySection.vue";
 
 const modalStore = useLogoutModalStore();
 
 const options = ref({
-  profile: true,
+  profile: false,
   notifications: false,
-  inventory: false,
+  inventory: true,
   history: false,
 });
 

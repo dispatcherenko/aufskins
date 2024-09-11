@@ -1,5 +1,5 @@
 <template>
-  <label :for="name" class="container">
+  <label :for="name" class="container" :class="class">
     <input
       class="input"
       type="checkbox"
@@ -18,6 +18,7 @@ const props = defineProps({
   id: String,
   isActive: Boolean,
   action: Function,
+  class: String,
 });
 
 const emit = defineEmits(["update"]);
@@ -33,7 +34,6 @@ const toggle = () => {
   width: 45px;
   position: relative;
   padding-left: 35px;
-  margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
@@ -54,8 +54,8 @@ const toggle = () => {
   position: absolute;
   top: 0;
   left: 0;
-  width: 44px;
-  height: 28px;
+  width: 100%;
+  height: 100%;
 
   background-color: #231f36;
   border-radius: 4px;
@@ -67,10 +67,12 @@ const toggle = () => {
 .checkmark::after {
   content: "";
   position: absolute;
-  top: 4px;
-  left: 4px;
-  height: 20px;
-  width: 20px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 2px;
+  width: calc(50%);
+  height: calc(100% - 5px);
   background-color: #fff;
   border-radius: 2px;
   transition: left 0.3s;
@@ -81,6 +83,6 @@ const toggle = () => {
 }
 
 .checkmark--checked::after {
-  left: 20px;
+  left: calc(50% - 2px);
 }
 </style>

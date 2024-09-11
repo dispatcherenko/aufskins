@@ -30,7 +30,7 @@ onMounted(() => {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  z-index: 10000;
+  z-index: 100;
 }
 
 @media (max-width: 1100px) {

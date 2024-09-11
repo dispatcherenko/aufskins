@@ -1,6 +1,6 @@
 <template>
   <a class="button" :class="class">
-    <img :src="img" :alt="alt" />
+    <img v-if="img" :src="img" :alt="alt" />
     <p class="button__title">
       {{ text }} <span class="button__title--add">{{ addText }}</span>
     </p>
@@ -14,6 +14,7 @@ const props = defineProps({
   alt: String,
   text: String,
   addText: String,
+  disabled: Boolean,
 });
 </script>
 
@@ -40,7 +41,7 @@ const props = defineProps({
 .button:hover {
   background-color: #98072d;
 }
-.button:disabled {
+.button.disabled {
   background-color: #ffffff1a;
   cursor: default;
 }

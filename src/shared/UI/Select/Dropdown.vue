@@ -1,7 +1,15 @@
 <template>
   <div class="dropdown">
     <div class="dropdown-header" @click="toggleMenu">
-      <p>{{ selected.name }}</p>
+      <div class="img-wrapper">
+        <img
+          v-if="selected.img"
+          :src="selected.img"
+          alt="icon"
+          class="dropdown__img"
+        />
+        <p>{{ selected.name }}</p>
+      </div>
       <Arrow class="arrow" :class="{ open: isOpen }" />
     </div>
 
@@ -59,10 +67,17 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.img-wrapper {
+  display: flex;
+}
 .dropdown {
   position: relative;
   display: flex;
   justify-content: space-between;
+
+  &__img {
+    margin-right: 13px;
+  }
 }
 
 .dropdown-header {

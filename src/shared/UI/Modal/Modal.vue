@@ -3,6 +3,9 @@
     <div class="modal" v-if="isOpen">
       <div class="bg" @click="close"></div>
       <div class="window">
+        <a class="exit" @click="close">
+          <Exit class="cross" />
+        </a>
         <slot></slot>
       </div>
     </div>
@@ -10,10 +13,36 @@
 </template>
 
 <script setup>
+import Exit from "@/assets/icons/exit.svg?component";
 const props = defineProps({ isOpen: Boolean, close: Function });
 </script>
 
 <style lang="scss" scoped>
+.exit {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  background: transparent;
+  border: none;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+
+  @media (max-width: 1280px) {
+    top: 20px;
+    right: 20px;
+  }
+}
+
+.cross {
+  color: #ffffff80;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #c41341;
+  }
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -37,6 +66,7 @@ const props = defineProps({ isOpen: Boolean, close: Function });
 }
 
 .window {
+  position: relative;
   background-color: #100e19;
   border-radius: 2px;
   z-index: 1001;
