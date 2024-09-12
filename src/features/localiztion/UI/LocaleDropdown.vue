@@ -83,7 +83,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  padding: 12px 0;
+  padding: 12px 16px;
   border-radius: 4px;
 }
 

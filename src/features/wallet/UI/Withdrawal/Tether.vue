@@ -40,7 +40,7 @@
           >Я ознакомился с <a href="/errorpage">Правилами компании</a></label
         >
       </span>
-      <ButtonForm
+      <Button2
         class="info__confirm"
         text="Запросить вывод"
         :disabled="!isChecked"
@@ -59,6 +59,7 @@ import Caution from "@/assets/icons/caution.svg?component";
 import Exchange from "@/assets/icons/exchange.svg?component";
 
 import { ref } from "vue";
+import Button2 from "@/shared/UI/Buttons/Button2.vue";
 
 const isChecked = ref(false);
 </script>

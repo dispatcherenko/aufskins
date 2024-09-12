@@ -6,20 +6,40 @@
         <header class="header"></header>
         <div class="side-menu__menu">
           <div class="side-menu__options">
-            <Option :img="catalog" text="Каталог" />
-            <Option :img="bag" text="Корзина" />
-            <Option :img="messages" text="Чат" />
+            <Option
+              :img="catalog"
+              text="Каталог"
+              @click="handleRedirect('/')"
+            />
+            <Option :img="bag" text="Корзина" @click="handleRedirect('/')" />
+            <Option :img="messages" text="Чат" @click="handleRedirect('/')" />
             <span class="divider"></span>
-            <Option :img="profile" text="Профиль" />
-            <Option :img="notifications" text="Уведомления" />
+            <Option
+              :img="profile"
+              text="Профиль"
+              @click="handleRedirect('/profile')"
+            />
+            <Option
+              :img="notifications"
+              text="Уведомления"
+              @click="handleRedirect('/profile/notifications')"
+            />
             <span class="divider"></span>
-            <Option :img="inventory" text="Инвнтарь" />
-            <Option :img="history" text="Сделки" />
+            <Option
+              :img="inventory"
+              text="Инвнтарь"
+              @click="handleRedirect('/profile/inventory')"
+            />
+            <Option
+              :img="history"
+              text="Сделки"
+              @click="handleRedirect('/profile/history')"
+            />
             <span class="divider"></span>
-            <Option :img="logout" text="Выйти" />
+            <Option :img="logout" text="Выйти" @click="handleLogout" />
           </div>
           <div class="side-menu__locale">
-            <p class="smallfootnote">Язык | Валюта</p>
+            <p class="smallfootnote side-menu__lang">Язык | Валюта</p>
             <LocaleDropdown />
           </div>
         </div>
@@ -28,9 +48,10 @@
 </template>
 
 <script setup>
+import { watch } from "vue";
+
 import LocaleDropdown from "@/features/localiztion/UI/LocaleDropdown.vue";
 import Option from "@/shared/UI/Menu/Option.vue";
-import Burger from "./UI/Burger.vue";
 
 import catalog from "@/assets/menu/catalog.svg";
 import bag from "@/assets/menu/bag.svg";
@@ -41,8 +62,13 @@ import notifications from "@/assets/menu/notification.svg";
 import profile from "@/assets/menu/profile.svg";
 import messages from "@/assets/icons/messages.svg";
 
+import { useLogoutModalStore } from "@/features/auth/store/index.js";
+const modalStore = useLogoutModalStore();
+
+import { useRouter } from "vue-router";
+const router = useRouter();
+
 import { useSideMenuStore } from "./store";
-import { watch } from "vue";
 const menuStore = useSideMenuStore();
 
 const disableScroll = () => {
@@ -63,6 +89,16 @@ watch(
     }
   }
 );
+
+const handleRedirect = (route) => {
+  router.push(route);
+  menuStore.manageMenu();
+};
+
+const handleLogout = () => {
+  modalStore.openModal();
+  menuStore.manageMenu();
+};
 </script>
 
 <style lang="scss" scoped>
@@ -75,7 +111,7 @@ watch(
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .bg {
@@ -96,13 +132,15 @@ watch(
   height: 100%;
   background-color: #100e19;
 
-  z-index: 100;
-
   &__menu {
     display: flex;
     flex-direction: column;
     gap: 64px;
     margin: 20px;
+  }
+
+  &__lang {
+    margin-left: 16px;
   }
 }
 

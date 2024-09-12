@@ -5,11 +5,12 @@
       <div class="inventory__to-sell">
         <p class="subheader">Предметы на продажу</p>
         <div class="inventory__to-sell-right">
-          <p class="body">Выбрано: 3</p>
+          <p class="body">Выбрано: {{ inventoryStore.toSell.length }}</p>
           <Button2
+            :disabled="inventoryStore.toSell.length === 0"
             class="inventory__to-sell-button"
             text="Установить цены"
-            @click="modalStore.openModal"
+            :click="modalStore.openModal"
           />
         </div>
       </div>
@@ -36,7 +37,7 @@
           :img="rotateRight"
         />
       </div>
-      <ItemsList :items="skins" />
+      <ItemsList :items="skins" type="inventory" />
     </div>
   </div>
 </template>
@@ -60,6 +61,9 @@ import { onMounted, ref } from "vue";
 
 import { useSellModalStore } from "./store";
 const modalStore = useSellModalStore();
+
+import { useInventoryStore } from "@/entities/skin/model";
+const inventoryStore = useInventoryStore();
 
 const games = [
   { name: "CS 2", id: "cs", img: cs },
@@ -168,7 +172,7 @@ onMounted(() => {
   &__filters {
     display: grid;
     width: 100%;
-    grid-template-columns: 56% 16% auto 56px;
+    grid-template-columns: 50% 16% auto 56px;
     gap: 16px;
   }
   &__update {

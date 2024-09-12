@@ -21,7 +21,7 @@
   &__buttons {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
 
   &__button {
@@ -31,6 +31,9 @@
 
   &__promo {
     margin-bottom: 12px;
+  }
+  &__promo-field {
+    margin-bottom: 16px;
   }
 
   &__price {
@@ -44,6 +47,10 @@
       padding: 4px 6px;
       border-radius: 2px;
     }
+  }
+
+  &__price-title {
+    margin-top: 24px;
   }
 
   &__alert {
@@ -107,7 +114,6 @@
     &__form {
       height: 100%;
       display: flex;
-      gap: 24px;
       flex-direction: column;
     }
 

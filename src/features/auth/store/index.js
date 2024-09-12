@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 
+import { useUserStore } from "@/entities/user/model";
+
 export const useLogoutModalStore = defineStore("logout-modal", {
   state: () => ({
     isOpen: false,
@@ -12,7 +14,9 @@ export const useLogoutModalStore = defineStore("logout-modal", {
       this.isOpen = false;
     },
     logout() {
+      const userStore = useUserStore();
       this.isOpen = false;
+      userStore.isLoggedIn = false;
     },
   },
 });

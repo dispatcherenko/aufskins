@@ -1,11 +1,8 @@
 <template>
   <Modal :is-open="modalStore.isOpen" :close="modalStore.closeModal">
     <div class="withdrawal">
-      <a class="exit" @click="modalStore.closeModal">
-        <Exit class="cross" />
-      </a>
       <div class="withdrawal__options options">
-        <p class="subheader">Способ пополнения</p>
+        <p class="subheader">Способ вывода</p>
         <div class="options__cards">
           <PaymentMethod
             class="options__gt-up"
@@ -88,14 +85,12 @@ const changeOption = (newOption) => {
   position: relative;
   display: grid;
   grid-template-columns: 426px 560px;
-
-  max-height: 80vh;
   overflow-y: auto;
 
   @media (max-width: 1280px) {
     grid-template-columns: none;
     grid-template-rows: auto auto;
-
+    max-height: 90vh;
     width: 728px;
   }
 

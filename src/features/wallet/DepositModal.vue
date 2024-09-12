@@ -1,9 +1,6 @@
 <template>
   <Modal :is-open="modalStore.isOpen" :close="modalStore.closeModal">
     <div class="deposit">
-      <a class="exit" @click="modalStore.closeModal">
-        <Exit class="cross" />
-      </a>
       <div class="deposit__options options">
         <p class="subheader">Способ пополнения</p>
         <div class="options__cards">
@@ -100,7 +97,7 @@ const changeOption = (newOption) => {
   @media (max-width: 1280px) {
     grid-template-columns: none;
     grid-template-rows: auto auto;
-
+    max-height: 90vh;
     width: 728px;
   }
 
@@ -151,7 +148,7 @@ const changeOption = (newOption) => {
 
     &__cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 12px;
     }
   }

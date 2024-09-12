@@ -14,44 +14,39 @@
           :img="profile"
           text="Профиль"
           :selected="options.profile"
-          @click="changeOption('profile')"
+          @click="navigateTo('')"
         />
         <Option
           :img="notifications"
           text="Уведомления"
           :selected="options.notifications"
-          @click="changeOption('notifications')"
+          @click="navigateTo('notifications')"
         />
         <span class="divider"></span>
         <Option
           :img="inventory"
           text="Инвентарь"
           :selected="options.inventory"
-          @click="changeOption('inventory')"
+          @click="navigateTo('inventory')"
         />
         <Option
           :img="history"
           text="Сделки"
           :selected="options.history"
-          @click="changeOption('history')"
+          @click="navigateTo('history')"
         />
         <span class="divider"></span>
         <Option :img="logout" text="Выйти" @click="modalStore.openModal" />
       </div>
     </div>
     <div class="info">
-      <ProfileInfo v-if="options.profile" />
-      <NotificationsSection v-if="options.notifications" />
-      <InventorySection v-if="options.inventory" />
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script setup>
 import Option from "@/shared/UI/Menu/Option.vue";
-import ProfileInfo from "./ProfileInfo/ProfileInfo.vue";
-import NotificationsSection from "./Notifications/NotificationsSection.vue";
-import { useLogoutModalStore } from "@/features/auth/store/index.js";
 
 import history from "@/assets/menu/history.svg";
 import inventory from "@/assets/menu/inventory.svg";
@@ -59,27 +54,34 @@ import logout from "@/assets/menu/logout.svg";
 import notifications from "@/assets/menu/notification.svg";
 import profile from "@/assets/menu/profile.svg";
 import ProfilePicture from "@/shared/UI/Profile/ProfilePicture.vue";
-import { ref } from "vue";
-import InventorySection from "./Inventory/InventorySection.vue";
+import { ref, watch } from "vue";
 
+import { useLogoutModalStore } from "@/features/auth/store/index.js";
 const modalStore = useLogoutModalStore();
+
+import { useRoute, useRouter } from "vue-router";
+const router = useRouter();
+const route = useRoute();
 
 const options = ref({
   profile: false,
   notifications: false,
-  inventory: true,
+  inventory: false,
   history: false,
 });
 
-const changeOption = (newOption) => {
-  options.value = {
-    profile: false,
-    notifications: false,
-    inventory: false,
-    history: false,
-  };
-  options.value[newOption] = true;
+const navigateTo = (path) => {
+  router.push(`/profile/${path}`);
 };
+
+const updateSelectedOption = () => {
+  const path = route.path.split("/").pop();
+  Object.keys(options.value).forEach((key) => {
+    options.value[key] = key === path || (key === "profile" && path === "");
+  });
+};
+
+watch(route, updateSelectedOption, { immediate: true });
 </script>
 
 <style lang="scss" scoped>

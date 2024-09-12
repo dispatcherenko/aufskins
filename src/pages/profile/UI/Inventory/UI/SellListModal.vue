@@ -1,4 +1,6 @@
 <script setup>
+import { watch } from "vue";
+
 import Modal from "@/shared/UI/Modal/Modal.vue";
 
 import SellCard from "./SellCard.vue";
@@ -8,22 +10,17 @@ import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import { useSellModalStore } from "../store";
 const modalStore = useSellModalStore();
 
-const skin = {
-  id: 123123,
-  price: 400,
-  level: "blue",
-  st: false,
-  sv: false,
-  name: "Скин",
-  gun: "Оружие",
-  pattren: 0.112,
-  quality: "FN",
-  imageURL: "https://i.postimg.cc/hjNRsd1f/image-6.png",
-  stickers: [
-    "https://i.postimg.cc/brLH8QVv/sticker.png",
-    "https://i.postimg.cc/zB8gBygH/sticker-2.png",
-  ],
-};
+import { useInventoryStore } from "@/entities/skin/model/index";
+const inventoryStore = useInventoryStore();
+
+watch(
+  () => inventoryStore.toSell,
+  (newToSell) => {
+    if (newToSell.length === 0) {
+      modalStore.closeModal();
+    }
+  }
+);
 </script>
 
 <template>
@@ -32,38 +29,48 @@ const skin = {
       <div class="list">
         <p class="subheader">Установить цену</p>
         <div class="list__items">
-          <SellCard :skin="skin" />
-          <SellCard :skin="skin" />
-          <SellCard :skin="skin" />
-          <SellCard :skin="skin" />
+          <SellCard
+            v-for="skin in inventoryStore.toSell"
+            :key="skin.id"
+            :skin="skin"
+          />
         </div>
       </div>
       <div class="footer">
         <div class="footer__info">
           <div class="footer__info-card">
             <p class="footnote">Сумма</p>
-            <p class="body">5600 <span class="grey">₽</span></p>
+            <p class="body">
+              {{ inventoryStore.total }} <span class="grey">₽</span>
+            </p>
           </div>
           <div class="footer__info-card">
-            <p class="footnote">Сумма</p>
-            <p class="body">5400 <span class="grey">₽</span></p>
+            <p class="footnote">Вы получите</p>
+            <p class="body">
+              {{ inventoryStore.totalTax }} <span class="grey">₽</span>
+            </p>
           </div>
           <div class="footer__info-card">
             <p class="footnote">Коммисия</p>
-            <p class="body">5 <span class="grey">%</span></p>
+            <p class="body">{{ 5 }} <span class="grey">%</span></p>
           </div>
         </div>
         <div class="footer__confirm">
           <div class="footer__checkbox">
-            <Checkbox name="confirm" id="confirm" />
+            <Checkbox
+              name="confirm"
+              id="confirm"
+              v-model="modalStore.isConfirmed"
+            />
             <label for="confirm" class="footnote"
               >Я согласен с условиями <a href="" class="red">договора</a></label
             >
           </div>
           <Button2
+            :disabled="!modalStore.isConfirmed"
             text="Выставить"
             class="footer__button"
-            @click="modalStore.sell"
+            :click="modalStore.sell"
           />
         </div>
       </div>

@@ -4,9 +4,6 @@
       <div class="upper">
         <div class="title-wrap">
           <p class="title">Хотите выйти из аккаунта?</p>
-          <a class="exit" @click="modalStore.closeModal">
-            <Exit class="cross" />
-          </a>
         </div>
         <p class="text">
           Если захотите воспользоваться сервисом, то вам придется снова войти

@@ -1,5 +1,15 @@
 <template>
-  <div class="card">
+  <div
+    class="card"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+  >
+    <div
+      v-if="inventoryStore.toSell.find((item) => item.id === skin.id)"
+      class="added"
+    >
+      <img :src="done" class="added__check" />
+    </div>
     <div class="upper">
       <img :src="imagePath" alt="bg" class="level" />
       <img :src="skin.imageURL" alt="skin" class="item" />
@@ -45,18 +55,38 @@
           {{ skin.pattren }}
         </p>
       </div>
+
+      <ButtonXS
+        v-if="
+          hover && !inventoryStore.toSell.find((item) => item.id === skin.id)
+        "
+        text="Выбрать"
+        class="bottom__button"
+        @click="inventoryStore.addItem(skin)"
+      />
     </div>
+    <ButtonXS
+      v-if="inventoryStore.toSell.find((item) => item.id === skin.id)"
+      text="Убрать"
+      class="bottom__button--grey"
+      @click="inventoryStore.removeItem(skin)"
+    />
   </div>
 </template>
 
 <script setup>
+import done from "@/assets/control/check.svg?url";
+import ButtonXS from "@/shared/UI/Buttons/ButtonXS.vue";
 import { ref, onMounted, onRenderTracked, watch } from "vue";
+import { useInventoryStore } from "../model";
+const inventoryStore = useInventoryStore();
 
 const props = defineProps({
   skin: Object,
 });
 
 const imagePath = ref("");
+const hover = ref(false);
 
 const getImagePath = async (level) => {
   const module = await import(`@/assets/levels/${level}.svg`);
@@ -70,6 +100,14 @@ const updateImagePath = async () => {
 onMounted(updateImagePath);
 
 watch(() => props.skin, updateImagePath, { deep: true });
+
+const handleMouseEnter = () => {
+  hover.value = true;
+};
+
+const handleMouseLeave = () => {
+  hover.value = false;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -79,7 +117,7 @@ watch(() => props.skin, updateImagePath, { deep: true });
   height: 100%;
   background-color: #231f3699;
 
-  z-index: 1000;
+  z-index: 100;
 
   &__check {
     position: absolute;
@@ -161,7 +199,6 @@ watch(() => props.skin, updateImagePath, { deep: true });
   align-items: start;
   gap: 7px;
   margin-bottom: 10px;
-  z-index: 100;
 }
 .bottom__info-price {
   font-size: 18px;
@@ -218,7 +255,7 @@ watch(() => props.skin, updateImagePath, { deep: true });
   margin: 4px 8px 8px;
   height: 32px;
   background-color: #171424;
-  z-index: 1000;
+  z-index: 999;
 }
 
 @media (min-width: 1900px) {
@@ -228,8 +265,6 @@ watch(() => props.skin, updateImagePath, { deep: true });
   .offers__main-elems {
     height: 454px;
     max-height: 454px;
-  }
-  .card {
   }
 }
 @media (max-width: 1280px) {

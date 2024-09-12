@@ -8,6 +8,7 @@
     <SellListModal />
     <ApiModal />
     <SuccessModal />
+    <WalletQRModal />
 
     <SideMenu />
     <NavigationBar
@@ -40,6 +41,7 @@ import SideMenu from "./widgets/SideMenu/SideMenu.vue";
 import SellListModal from "./pages/profile/UI/Inventory/UI/SellListModal.vue";
 import ApiModal from "./pages/profile/UI/Inventory/UI/ApiModal.vue";
 import SuccessModal from "./pages/profile/UI/Inventory/UI/SuccessModal.vue";
+import WalletQRModal from "./features/wallet/UI/Deposit/WalletQRModal.vue";
 
 const userStore = useUserStore();
 
@@ -185,18 +187,14 @@ h4 {
   list-style-type: none;
   gap: 5px;
 }
-.page-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2px;
-}
-.page-item.active {
+.page-link.active {
   background-color: #231f36;
 }
-.page-item.disabled {
-  a {
-    color: #ffffff80;
+.page-link.disabled {
+  svg {
+    path {
+      fill: #ffffff80;
+    }
   }
 }
 .page-link {

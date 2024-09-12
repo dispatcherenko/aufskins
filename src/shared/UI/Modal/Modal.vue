@@ -20,13 +20,14 @@ const props = defineProps({ isOpen: Boolean, close: Function });
 <style lang="scss" scoped>
 .exit {
   position: absolute;
-  top: 28px;
-  right: 28px;
+  top: 20px;
+  right: 20px;
   background: transparent;
   border: none;
   width: 16px;
   height: 16px;
   padding: 0;
+  z-index: 10000;
 
   @media (max-width: 1280px) {
     top: 20px;
@@ -52,7 +53,7 @@ const props = defineProps({ isOpen: Boolean, close: Function });
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 10000;
 }
 
 .bg {

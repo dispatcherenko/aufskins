@@ -28,7 +28,7 @@
           >Я ознакомился с <a href="/errorpage">Правилами компании</a></label
         >
       </span>
-      <ButtonForm
+      <Button2
         class="info__confirm"
         text="Запросить вывод"
         :disabled="!isChecked"
@@ -38,6 +38,7 @@
 </template>
 
 <script setup>
+import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import ButtonForm from "@/shared/UI/Buttons/ButtonForm.vue";
 import Checkbox from "@/shared/UI/Checkbox/Checkbox.vue";
 import TextInput from "@/shared/UI/Inputs/TextInput.vue";

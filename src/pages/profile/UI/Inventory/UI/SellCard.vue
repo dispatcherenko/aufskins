@@ -4,6 +4,9 @@ import TextInput from "@/shared/UI/Inputs/TextInput.vue";
 import Trash from "@/assets/icons/trash.svg?component";
 import { ref } from "vue";
 
+import { useInventoryStore } from "@/entities/skin/model/index";
+const inventoryStore = useInventoryStore();
+
 const props = defineProps({
   skin: Object,
 });
@@ -19,8 +22,12 @@ let isSwitchActive = ref(false);
         <img src="@/assets/mainpage/bar.svg" alt="bar" v-if="skin.pattren" />
       </div>
       <div class="card__descr">
-        <p class="footnote"><span class="red">SV</span> | Немного поношенное</p>
-        <p class="body">The Prince<span class="grey"> | M4A4</span></p>
+        <span v-if="skin.sv" class="footnote red">SV |</span>
+        <p v-if="skin.quality" class="footnote">{{ skin.quality }}</p>
+        <p class="body">
+          {{ skin.name
+          }}<span v-if="skin.gun" class="grey"> | {{ skin.gun }}</span>
+        </p>
         <div class="card__stickers">
           <img
             height="16"
@@ -35,8 +42,16 @@ let isSwitchActive = ref(false);
     </div>
     <div class="card__right">
       <div class="card__price">
-        <TextInput placeholder="Цена продажи" />
-        <Trash />
+        <TextInput
+          class="card__price-input"
+          type="number"
+          placeholder="Цена продажи"
+          v-model="skin.priceToSell"
+        />
+        <Trash
+          class="card__price-trash"
+          @click="inventoryStore.removeItem(skin)"
+        />
       </div>
       <div class="card__moment">
         <Switch
@@ -99,8 +114,19 @@ let isSwitchActive = ref(false);
     align-items: center;
     gap: 24px;
 
-    input {
+    &-input {
       width: 154px;
+    }
+
+    &-trash {
+      &:hover {
+        cursor: pointer;
+        svg {
+          path {
+            fill: #fff;
+          }
+        }
+      }
     }
   }
 

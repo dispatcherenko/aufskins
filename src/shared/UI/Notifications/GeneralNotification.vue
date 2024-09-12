@@ -49,7 +49,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .card {
   width: 100%;
-  height: 84px;
+  height: 88px;
   background-color: #171424;
   border-radius: 2px;
   display: flex;

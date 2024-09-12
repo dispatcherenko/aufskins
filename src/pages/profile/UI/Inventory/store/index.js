@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useSellModalStore = defineStore("sell-modal", {
   state: () => ({
     isOpen: false,
+    isConfirmed: false,
   }),
   actions: {
     openModal() {
@@ -10,11 +11,13 @@ export const useSellModalStore = defineStore("sell-modal", {
     },
     closeModal() {
       this.isOpen = false;
+      this.isConfirmed = false;
     },
     sell() {
       const apiModalStore = useAPIModalStore();
       this.isOpen = false;
       apiModalStore.openModal();
+      this.isConfirmed = false;
     },
   },
 });

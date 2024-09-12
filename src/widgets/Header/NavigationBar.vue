@@ -80,7 +80,7 @@ const menuStore = useSideMenuStore();
   justify-content: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-  z-index: 100;
+  z-index: 1000;
 }
 .header__wrapper {
   width: 100%;

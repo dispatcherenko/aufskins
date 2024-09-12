@@ -251,9 +251,6 @@ onMounted(() => {
     text-overflow: clip;
     white-space: nowrap;
   }
-  .offers__button {
-    margin-right: 30px;
-  }
   .offers__main-elems-elem {
     width: 100%;
   }
@@ -267,6 +264,23 @@ onMounted(() => {
   }
 }
 @media (max-width: 767px) {
+  .offers__main-select {
+    overflow-x: scroll;
+    height: 100%;
+  }
+
+  .offers__main-select::-webkit-scrollbar {
+    width: 2px;
+    height: 4px; /* ширина scrollbar */
+    margin: -4px;
+  }
+  .offers__main-select::-webkit-scrollbar-track {
+    display: none; /* цвет дорожки */
+  }
+  .offers__main-select::-webkit-scrollbar-thumb {
+    background-color: #231f36; /* цвет плашки */
+  }
+
   .offers__button {
     align-self: center;
     margin-bottom: 80px;

@@ -1,5 +1,9 @@
 <template>
-  <a class="button" :class="class">
+  <a
+    class="button"
+    :class="{ 'button--disabled': disabled }"
+    @click.prevent="handleClick"
+  >
     <img v-if="img" :src="img" :alt="alt" />
     <p class="button__title">
       {{ text }} <span class="button__title--add">{{ addText }}</span>
@@ -9,13 +13,22 @@
 
 <script setup>
 const props = defineProps({
-  class: String,
+  addClass: String,
   img: String,
   alt: String,
   text: String,
   addText: String,
-  disabled: Boolean,
+  disabled: { type: Boolean, default: false },
+  click: Function,
 });
+
+function handleClick(event) {
+  if (props.disabled) {
+    event.preventDefault();
+  } else {
+    props.click && props.click(event);
+  }
+}
 </script>
 
 <style scoped>
@@ -41,9 +54,15 @@ const props = defineProps({
 .button:hover {
   background-color: #98072d;
 }
-.button.disabled {
+.button--disabled {
   background-color: #ffffff1a;
   cursor: default;
+  p {
+    color: #ffffff80;
+  }
+  &:hover {
+    background-color: #ffffff1a;
+  }
 }
 @media (max-width: 1280px) {
   .button__title--add {

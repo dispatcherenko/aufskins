@@ -1,15 +1,18 @@
 <template>
   <div class="items" v-auto-animate>
     <div v-for="item in items" :key="item.id" class="item" v-auto-animate>
-      <SkinCard :skin="item" />
+      <SkinCard v-if="type === 'item'" :skin="item" />
+      <InventoryCard v-if="type === 'inventory'" :skin="item" />
     </div>
   </div>
 </template>
 
 <script setup>
+import InventoryCard from "@/entities/skin/UI/InventoryCard.vue";
 import SkinCard from "@/entities/skin/UI/ItemCard.vue";
 const props = defineProps({
   items: Array,
+  type: { type: String, default: "item" },
 });
 </script>
 
@@ -30,8 +33,7 @@ const props = defineProps({
 .item {
   width: 100%;
   height: 221px;
-  min-width: 190px;
-  background-color: #171424;
+  min-width: 184px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -40,11 +42,6 @@ const props = defineProps({
   justify-content: end;
 }
 
-@media (min-width: 1920px) {
-  .item {
-    width: 202px;
-  }
-}
 @media (max-width: 1279px) {
   .item {
     width: 100%;

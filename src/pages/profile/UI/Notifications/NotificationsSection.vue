@@ -19,28 +19,34 @@
         />
       </div>
     </div>
+    <div class="pagination">
+      <a class="page-link" :class="{ disabled: isFirstPage }" @click="prev"
+        ><Left
+      /></a>
+      <a
+        class="page-link"
+        v-for="item in pageCount"
+        :key="item"
+        :class="{ active: currentPage === item }"
+        @click="currentPage = item"
+      >
+        {{ item }}
+      </a>
+      <a class="page-link" :class="{ disabled: isLastPage }" @click="next"
+        ><Right
+      /></a>
+    </div>
   </div>
-  <paginate
-    :page-count="pageCount"
-    :page-range="3"
-    :margin-pages="2"
-    :click-handler="changePage"
-    :prev-text="`<img src='src/assets/control/leftarrow-s.svg' alt='Previous' />`"
-    :next-text="`<img src='src/assets/control/rightarrow-s.svg' alt='Next' />`"
-    :container-class="'pagination'"
-    :page-class="'page-item'"
-  >
-  </paginate>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
 import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import GeneralNotification from "@/shared/UI/Notifications/GeneralNotification.vue";
-import Paginate from "vuejs-paginate-next";
+import { useOffsetPagination } from "@vueuse/core";
 
-import Left from "@/assets/control/leftarrow.svg?component";
-import Right from "@/assets/control/rightarrow.svg?component";
+import Left from "@/assets/control/leftarrow-s.svg?component";
+import Right from "@/assets/control/rightarrow-s.svg?component";
 
 const currentPage = ref(1);
 const itemsPerPage = 7;
@@ -102,19 +108,17 @@ const notifications = [
   },
 ];
 
+const { next, prev, pageCount, isFirstPage, isLastPage } = useOffsetPagination({
+  total: notifications.length,
+  page: currentPage,
+  pageSize: itemsPerPage,
+});
+
 const paginatedNotifications = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   return notifications.slice(start, end);
 });
-
-const pageCount = computed(() => {
-  return Math.ceil(notifications.length / itemsPerPage);
-});
-
-const changePage = (pageNum) => {
-  currentPage.value = pageNum;
-};
 </script>
 
 <style lang="scss" scoped>
@@ -122,7 +126,7 @@ const changePage = (pageNum) => {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 756px;
+  height: 100%;
 
   &__header {
     display: flex;
@@ -140,12 +144,14 @@ const changePage = (pageNum) => {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    height: 100%;
+    height: 688px;
   }
 
   @media (max-width: 1280px) {
     height: 100%;
+
     &__wrapper {
+      height: 100%;
     }
   }
 }
