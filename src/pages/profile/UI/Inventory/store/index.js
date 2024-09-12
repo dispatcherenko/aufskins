@@ -52,8 +52,9 @@ export const useSuccessModalStore = defineStore("success-modal", {
     closeModal() {
       this.isOpen = false;
     },
-    sell() {
+    goto(router) {
       this.isOpen = false;
+      router.push("/profile/history");
     },
   },
 });

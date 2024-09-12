@@ -199,6 +199,8 @@ const handleMouseLeave = () => {
   align-items: start;
   gap: 7px;
   margin-bottom: 10px;
+
+  z-index: 1;
 }
 .bottom__info-price {
   font-size: 18px;
