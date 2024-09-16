@@ -97,4 +97,21 @@ const handleLogout = () => {
 .black {
   background-color: #231f36;
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 350px;
+    height: 272px;
+    padding: 16px;
+  }
+  .lower {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  .red,
+  .black {
+    width: 100%;
+  }
+}
 </style>

@@ -1,5 +1,6 @@
 <template>
   <header class="header">
+    <UserMenu class="header__menu" />
     <div class="header__wrapper">
       <nav class="header-info">
         <a class="logo" href="/"
@@ -8,7 +9,7 @@
         <div class="header-info__currency">
           <LocaleDropdown />
         </div>
-        <a class="header-info__catalog" href="/">Каталог</a>
+        <a class="header-info__catalog" href="/catalog">Каталог</a>
       </nav>
       <div class="header-menu">
         <Button2
@@ -34,8 +35,14 @@
             </div>
           </div>
           <div class="header-menu__right">
-            <ProfilePicture class="header-menu__pfp" size="56" />
-            <Arrow class="arrow" :class="{ open: isOpen }" />
+            <a href="/profile" class="pfp">
+              <ProfilePicture class="header-menu__pfp" size="56" />
+            </a>
+            <Arrow
+              class="arrow"
+              :class="{ open: menuStore.isOpen }"
+              @click="menuStore.manageMenu"
+            />
           </div>
         </div>
       </div>
@@ -48,23 +55,24 @@ import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import Steam from "@/assets/nav/steam.svg";
 import LocaleDropdown from "@/features/localiztion/UI/LocaleDropdown.vue";
 import ProfilePicture from "@/shared/UI/Profile/ProfilePicture.vue";
+import Burger from "../SideMenu/UI/Burger.vue";
+import UserMenu from "./UI/UserMenu.vue";
 
 import Cart from "@/assets/icons/cart.svg?component";
 import Messages from "@/assets/icons/messages.svg?component";
 import Wallet from "@/assets/menu/wallet.svg?component";
 import Arrow from "@/assets/nav/arrowDown.svg?component";
 
+import { useUserMenuStote } from "./store";
+const menuStore = useUserMenuStote();
+
 import { useDepositModalStore } from "@/features/wallet/store";
-import { useSideMenuStore } from "@/widgets/SideMenu/store/index";
-import Burger from "../SideMenu/UI/Burger.vue";
+const modalStore = useDepositModalStore();
 
 const props = defineProps({
   buttonAction: Function,
   isLoggedIn: Boolean,
 });
-
-const modalStore = useDepositModalStore();
-const menuStore = useSideMenuStore();
 </script>
 
 <style scoped>
@@ -81,6 +89,18 @@ const menuStore = useSideMenuStore();
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   z-index: 1000;
+}
+.arrow {
+  cursor: pointer;
+  transition: all 0.2s;
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+.pfp {
+  &:hover {
+    background-color: transparent;
+  }
 }
 .header__wrapper {
   width: 100%;
@@ -180,6 +200,11 @@ const menuStore = useSideMenuStore();
 }
 .header-menu__pfp {
   margin: auto;
+}
+.header__menu {
+  position: fixed;
+  top: 100px;
+  right: 32px;
 }
 @media (max-width: 1280px) {
   .header__wrapper {

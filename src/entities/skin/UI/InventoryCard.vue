@@ -58,7 +58,10 @@
 
       <ButtonXS
         v-if="
-          hover && !inventoryStore.toSell.find((item) => item.id === skin.id)
+          (hover &&
+            !inventoryStore.toSell.find((item) => item.id === skin.id)) ||
+          (isMobile &&
+            !inventoryStore.toSell.find((item) => item.id === skin.id))
         "
         text="Выбрать"
         class="bottom__button"
@@ -77,7 +80,7 @@
 <script setup>
 import done from "@/assets/control/check.svg?url";
 import ButtonXS from "@/shared/UI/Buttons/ButtonXS.vue";
-import { ref, onMounted, onRenderTracked, watch } from "vue";
+import { ref, onMounted, onRenderTracked, watch, onBeforeUnmount } from "vue";
 import { useInventoryStore } from "../model";
 const inventoryStore = useInventoryStore();
 
@@ -108,6 +111,20 @@ const handleMouseEnter = () => {
 const handleMouseLeave = () => {
   hover.value = false;
 };
+
+const isMobile = ref(window.innerWidth < 1280);
+
+const handleResize = () => {
+  isMobile.value = window.innerWidth < 1280;
+};
+
+onMounted(() => {
+  window.addEventListener("resize", handleResize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", handleResize);
+});
 </script>
 
 <style lang="scss" scoped>

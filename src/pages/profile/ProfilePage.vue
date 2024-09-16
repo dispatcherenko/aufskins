@@ -1,5 +1,5 @@
 <template>
-  <section class="main">
+  <section class="profile-page">
     <ChatButton class="chat" />
     <MainContainer />
     <HugeBuys />
@@ -22,7 +22,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.main {
+.profile-page {
   @include container;
 }
 .chat {

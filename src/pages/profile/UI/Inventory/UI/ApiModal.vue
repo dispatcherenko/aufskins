@@ -71,5 +71,15 @@ const modalStore = useAPIModalStore();
       background-color: #ffffff1a;
     }
   }
+
+  @media (max-width: 768px) {
+    width: 350px;
+    height: 532px;
+    gap: 16px;
+
+    &__icon {
+      margin-top: calc(16px + 16px);
+    }
+  }
 }
 </style>

@@ -11,6 +11,7 @@ import ProfilePage from "./pages/profile/ProfilePage.vue";
 import ProfileInfo from "./pages/profile/UI/ProfileInfo/ProfileInfo.vue";
 import NotificationsSection from "./pages/profile/UI/Notifications/NotificationsSection.vue";
 import InventorySection from "./pages/profile/UI/Inventory/InventorySection.vue";
+import CatalogPage from "./pages/catalog/CatalogPage.vue";
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -41,6 +42,17 @@ const routes = [
     path: "/links",
     component: Links,
     name: "links",
+  },
+  {
+    path: "/catalog",
+    component: CatalogPage,
+    name: "catalog",
+    children: [
+      { path: "cs" },
+      { path: "dota" },
+      { path: "rust" },
+      { path: "tf" },
+    ],
   },
 ];
 

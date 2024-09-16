@@ -11,6 +11,7 @@
     <WalletQRModal />
 
     <SideMenu />
+
     <NavigationBar
       :button-action="toProfile"
       :isLoggedIn="userStore.isLoggedIn"
@@ -42,6 +43,7 @@ import SellListModal from "./pages/profile/UI/Inventory/UI/SellListModal.vue";
 import ApiModal from "./pages/profile/UI/Inventory/UI/ApiModal.vue";
 import SuccessModal from "./pages/profile/UI/Inventory/UI/SuccessModal.vue";
 import WalletQRModal from "./features/wallet/UI/Deposit/WalletQRModal.vue";
+import UserMenu from "./widgets/Header/UI/UserMenu.vue";
 
 const userStore = useUserStore();
 
@@ -161,6 +163,10 @@ h4 {
 .red {
   color: #c41341;
 }
+.upperbody {
+  font-size: 18px;
+  font-weight: 500;
+}
 .body {
   font-family: Geometria;
   font-size: 16px;
@@ -211,6 +217,7 @@ h4 {
   width: 100%;
   height: 1px;
   background: var(--white-10, #ffffff1a);
+  z-index: 10;
 }
 
 @media (max-width: 1280px) {
