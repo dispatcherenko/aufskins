@@ -10,7 +10,7 @@ import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import { useSellModalStore } from "../store";
 const modalStore = useSellModalStore();
 
-import { useInventoryStore } from "@/entities/skin/model/index";
+import { useInventoryStore } from "@/entities/user/model";
 const inventoryStore = useInventoryStore();
 
 watch(

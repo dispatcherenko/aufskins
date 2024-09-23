@@ -3,11 +3,13 @@
     <div v-for="item in items" :key="item.id" class="item" v-auto-animate>
       <SkinCard v-if="type === 'item'" :skin="item" />
       <InventoryCard v-if="type === 'inventory'" :skin="item" />
+      <CatalogCard v-if="type === 'catalog'" :skin="item" />
     </div>
   </div>
 </template>
 
 <script setup>
+import CatalogCard from "@/entities/skin/UI/CatalogCard.vue";
 import InventoryCard from "@/entities/skin/UI/InventoryCard.vue";
 import SkinCard from "@/entities/skin/UI/ItemCard.vue";
 const props = defineProps({
@@ -21,13 +23,13 @@ const props = defineProps({
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(181px, 1fr));
-
+  grid-template-rows: repeat(auto-fill, 221px);
   position: relative;
   gap: 12px;
   transition: all 0.2s;
 }
 .items::-webkit-scrollbar {
-  width: 0;
+  width: 5px;
   height: 0;
 }
 .item {

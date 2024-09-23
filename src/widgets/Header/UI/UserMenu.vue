@@ -3,7 +3,7 @@ import { onMounted, onUnmounted, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import { useLogoutModalStore } from "@/features/auth/store/index.js";
-import { useUserMenuStote } from "../store";
+import { useUserMenuStore } from "../store";
 import Option from "@/shared/UI/Menu/Option.vue";
 import history from "@/assets/menu/history.svg?url";
 import inventory from "@/assets/menu/inventory.svg?url";
@@ -13,7 +13,7 @@ import profile from "@/assets/menu/profile.svg?url";
 
 const router = useRouter();
 const modalStore = useLogoutModalStore();
-const menuStore = useUserMenuStote();
+const menuStore = useUserMenuStore();
 
 const navigateTo = (path) => {
   router.push(`/profile/${path}`);
@@ -67,6 +67,10 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .buttons {
+  position: fixed;
+  top: 100px;
+  right: 35px;
+
   background-color: #100e19;
   display: flex;
   flex-direction: column;

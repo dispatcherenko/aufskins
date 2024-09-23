@@ -9,10 +9,28 @@
             <Option
               :img="catalog"
               text="Каталог"
-              @click="handleRedirect('/')"
+              @click="handleRedirect('/catalog/cs')"
             />
-            <Option :img="bag" text="Корзина" @click="handleRedirect('/')" />
-            <Option :img="messages" text="Чат" @click="handleRedirect('/')" />
+            <Option
+              :img="bag"
+              text="Корзина"
+              @click="
+                () => {
+                  menuStore.manageMenu();
+                  cartMenuStore.manageMenu();
+                }
+              "
+            />
+            <Option
+              :img="messages"
+              text="Чат"
+              @click="
+                () => {
+                  menuStore.manageMenu();
+                  chatStore.openMenu();
+                }
+              "
+            />
             <span class="divider"></span>
             <Option
               :img="profile"
@@ -70,6 +88,12 @@ const router = useRouter();
 
 import { useSideMenuStore } from "./store";
 const menuStore = useSideMenuStore();
+
+import { useCartMenuStore } from "@/pages/catalog/store";
+const cartMenuStore = useCartMenuStore();
+
+import { useChatStore } from "../Chat/store";
+const chatStore = useChatStore();
 
 const disableScroll = () => {
   document.body.style.overflow = "hidden";

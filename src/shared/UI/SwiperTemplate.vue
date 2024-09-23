@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/swiper-bundle.css";
@@ -61,6 +61,12 @@ const onSwiper = (swiper) => {
     factiveIndex.value = swiper.activeIndex;
   });
 };
+
+onMounted(() => {
+  if (fslider.value) {
+    fslider.value.slideTo(0);
+  }
+});
 </script>
 
 <style scoped>

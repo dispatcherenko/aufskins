@@ -81,7 +81,7 @@
 import done from "@/assets/control/check.svg?url";
 import ButtonXS from "@/shared/UI/Buttons/ButtonXS.vue";
 import { ref, onMounted, onRenderTracked, watch, onBeforeUnmount } from "vue";
-import { useInventoryStore } from "../model";
+import { useInventoryStore } from "@/entities/user/model";
 const inventoryStore = useInventoryStore();
 
 const props = defineProps({

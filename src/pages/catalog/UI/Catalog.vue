@@ -1,171 +1,104 @@
-<script setup lang="ts">
-import Dropdown from "@/shared/UI/Select/Dropdown.vue";
+<script setup>
+import { onMounted } from "vue";
 
-import cs from "@/assets/games/cs.svg?url";
-import dota from "@/assets/games/dota.svg?url";
-import rust from "@/assets/games/rust.svg?url";
-import tf from "@/assets/games/tf.svg?url";
-import { ref } from "vue";
-import FilterItem from "./FilterItem.vue";
-import TextInputButton from "@/shared/UI/Inputs/TextInputButton.vue";
-import RangeSlider from "@/shared/UI/RangeSlider/RangeSlider.vue";
-import Checkbox from "@/shared/UI/Checkbox/Checkbox.vue";
+import { useUserStore } from "@/entities/user/model";
+const userStore = useUserStore();
 
-const games = [
-  { name: "CS 2", id: "cs", img: cs },
-  { name: "DOTA 2", id: "dota", img: dota },
-  { name: "RUST", id: "rust", img: rust },
-  { name: "TF 2", id: "tf", img: tf },
-];
-let selectedGame = ref({ name: "CS 2", id: "cs", img: cs });
-const updateSelectedGame = (game) => {
-  selectedGame.value = game;
-};
+onMounted(() => {
+  userStore.logIn();
+});
 </script>
 
 <template>
-  <div class="catalog">
-    <div class="catalog__menu menu">
-      <Dropdown
-        class="menu__select"
-        :options="games"
-        :selected="selectedGame"
-        @update:selected="updateSelectedGame"
-      />
-      <div class="menu__filters">
-        <FilterItem name="Цена"><RangeSlider /></FilterItem>
-        <FilterItem name="Тип оружия">
-          <div class="menu__filter">
-            <label class="menu__checkbox" for="pistol">
-              <Checkbox name="gun" id="pistol" />
-              <p class="footnote">Пистолеты</p>
-            </label>
-            <label class="menu__checkbox" for="pp">
-              <Checkbox name="gun" id="pp" />
-              <p class="footnote">ПП</p>
-            </label>
-            <label class="menu__checkbox" for="heavy">
-              <Checkbox name="gun" id="heavy" />
-              <p class="footnote">Тяжелое</p>
-            </label>
-            <label class="menu__checkbox" for="rifles">
-              <Checkbox name="gun" id="rifles" />
-              <p class="footnote">Винтовки</p>
-            </label>
-            <label class="menu__checkbox" for="knives">
-              <Checkbox name="gun" id="knives" />
-              <p class="footnote">Ножи</p>
-            </label>
-            <label class="menu__checkbox" for="gloves">
-              <Checkbox name="gun" id="gloves" />
-              <p class="footnote">Перчатки</p>
-            </label>
-            <label class="menu__checkbox" for="zeus">
-              <Checkbox name="gun" id="zeus" />
-              <p class="footnote">ZEUS</p>
-            </label>
-          </div>
-        </FilterItem>
-        <FilterItem name="Редкость">
-          <div class="menu__filter">
-            <label class="menu__checkbox" for="gray">
-              <Checkbox name="rarity" id="gray" />
-              <p class="footnote">Ширпотреб</p>
-            </label>
-            <label class="menu__checkbox" for="babyBlue">
-              <Checkbox name="rarity" id="babyBlue" />
-              <p class="footnote">Промышленное</p>
-            </label>
-            <label class="menu__checkbox" for="blue">
-              <Checkbox name="rarity" id="blue" />
-              <p class="footnote">Армейское</p>
-            </label>
-            <label class="menu__checkbox" for="purple">
-              <Checkbox name="rarity" id="purple" />
-              <p class="footnote">Запрещенное</p>
-            </label>
-            <label class="menu__checkbox" for="pink">
-              <Checkbox name="rarity" id="pink" />
-              <p class="footnote">Засекреченое</p>
-            </label>
-            <label class="menu__checkbox" for="red">
-              <Checkbox name="rarity" id="red" />
-              <p class="footnote">Тайное</p>
-            </label>
-            <label class="menu__checkbox" for="gold">
-              <Checkbox name="rarity" id="gold" />
-              <p class="footnote">Контрабандное</p>
-            </label>
-          </div>
-        </FilterItem>
-        <FilterItem name="Качество">
-          <div class="menu__filter">
-            <label class="menu__checkbox" for="FN">
-              <Checkbox name="quality" id="FN" />
-              <p class="footnote">Прямо с завода</p>
-            </label>
-            <label class="menu__checkbox" for="MW">
-              <Checkbox name="quality" id="WW" />
-              <p class="footnote">Немного поношенное</p>
-            </label>
-            <label class="menu__checkbox" for="FT">
-              <Checkbox name="quality" id="FT" />
-              <p class="footnote">После полевых испытаний</p>
-            </label>
-            <label class="menu__checkbox" for="WW">
-              <Checkbox name="quality" id="WW" />
-              <p class="footnote">Поношенное</p>
-            </label>
-            <label class="menu__checkbox" for="BS">
-              <Checkbox name="quality" id="BS" />
-              <p class="footnote">Закаленное в боях</p>
-            </label>
-          </div>
-        </FilterItem>
-        <FilterItem name="Категория">
-          <div class="menu__filter">
-            <label class="menu__checkbox" for="regular">
-              <Checkbox name="category" id="regular" />
-              <p class="footnote">Обычное</p>
-            </label>
-            <label class="menu__checkbox" for="ST">
-              <Checkbox name="category" id="ST" />
-              <p class="footnote">Stat Track™</p>
-            </label>
-            <label class="menu__checkbox" for="SV">
-              <Checkbox name="category" id="SV" />
-              <p class="footnote">Сувенир</p>
-            </label>
-          </div>
-        </FilterItem>
-      </div>
-    </div>
-    <div class="catalog__right right">
-      <TextInputButton placeholder="Поиск по названию" button-text="Найти" />
-    </div>
-  </div>
+  <router-view></router-view>
 </template>
 
 <style lang="scss" scoped>
 .catalog {
   width: 100%;
   display: grid;
-  grid-template-columns: 234px auto;
-  gap: 12px;
+  grid-template-areas: "game search search search" "filters title sort update" "filters matrix matrix matrix";
+  grid-template-columns: 234px calc(100% - 234px - 287px - 148px - 16px) 287px 148px;
+  grid-template-rows: 48px 48px 687px;
+  row-gap: 24px;
+  column-gap: 8px;
+
   margin-bottom: 104px;
   margin-top: 32px;
-  height: calc(759px + 20px + 48px);
+  height: 100%;
   max-width: 1696px;
+
+  @media (max-width: 1280px) {
+    grid-template-areas:
+      "filters filters filters"
+      "title title title"
+      "search search search"
+      "game sort update"
+      "matrix matrix matrix";
+    grid-template-columns: 261px calc(100% - 261px - 148px - 32px) 148px;
+    grid-template-rows: 60px 48px 48px 48px auto;
+
+    column-gap: 16px;
+    row-gap: 12px;
+
+    margin-bottom: 80px;
+    margin-top: 0;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-areas:
+      "filters filters filters"
+      "title title title"
+      "search search search"
+      "game game update"
+      "matrix matrix matrix";
+    grid-template-columns: calc(100% - 56px - 24px) 0 56px;
+    grid-template-rows: 60px 60px 48px 48px auto;
+
+    column-gap: 16px;
+
+    margin-bottom: 80px;
+    margin-top: 16px;
+  }
 }
 
-.menu {
+:deep .menu {
   width: 100%;
-
   &__select {
+    grid-area: game;
   }
+
   &__filters {
+    grid-area: filters;
+
     height: 759px;
     overflow: auto;
+
+    &--mobile {
+      grid-area: filters;
+      display: none;
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 4px;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    @media (max-width: 1280px) {
+      display: none;
+
+      &--mobile {
+        display: flex;
+        width: 100%;
+
+        justify-content: space-between;
+      }
+    }
   }
   &__filter {
     display: flex;
@@ -178,6 +111,80 @@ const updateSelectedGame = (game) => {
 
     p {
       color: white;
+    }
+  }
+}
+
+:deep .right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__search {
+    grid-area: search;
+  }
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__buttons {
+    grid-area: buttons;
+
+    display: flex;
+    justify-content: right;
+    gap: 16px;
+
+    &-dropdown {
+      grid-area: sort;
+      width: 100%;
+    }
+
+    &-update {
+      grid-area: update;
+      background-color: #171424;
+      flex-direction: row-reverse;
+      gap: 12px;
+      padding: 12px 16px;
+    }
+  }
+
+  &__list {
+    grid-area: matrix;
+    height: 100%;
+    overflow: scroll;
+  }
+
+  @media (max-width: 1280px) {
+    &__list {
+      grid-area: matrix;
+      height: 100%;
+      overflow: auto;
+    }
+
+    &__buttons {
+      &-dropdown {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__list {
+      grid-area: matrix;
+      height: 100%;
+      overflow: auto;
+    }
+
+    &__buttons {
+      &-dropdown {
+        width: 70%;
+      }
+      &-update {
+        p {
+          display: none;
+        }
+      }
     }
   }
 }

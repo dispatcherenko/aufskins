@@ -1,5 +1,6 @@
 <template>
   <header class="header">
+    <CartMenu />
     <UserMenu class="header__menu" />
     <div class="header__wrapper">
       <nav class="header-info">
@@ -26,8 +27,12 @@
 
         <div v-if="isLoggedIn" class="header-menu__profile">
           <div class="header-menu__links">
-            <a class="header-menu__link" href="/"><Cart />Корзина</a>
-            <a class="header-menu__link" href="/"><Messages />Чат</a>
+            <a class="header-menu__link" @click="cartMenuStore.manageMenu"
+              ><Cart />Корзина</a
+            >
+            <a class="header-menu__link" @click="chatStore.openMenu"
+              ><Messages />Чат</a
+            >
             <div class="header-menu__wallet">
               <Wallet />
               <p>1 000 ₽</p>
@@ -40,8 +45,8 @@
             </a>
             <Arrow
               class="arrow"
-              :class="{ open: menuStore.isOpen }"
-              @click="menuStore.manageMenu"
+              :class="{ open: userMenuStore.isOpen }"
+              @click="userMenuStore.manageMenu"
             />
           </div>
         </div>
@@ -63,10 +68,17 @@ import Messages from "@/assets/icons/messages.svg?component";
 import Wallet from "@/assets/menu/wallet.svg?component";
 import Arrow from "@/assets/nav/arrowDown.svg?component";
 
-import { useUserMenuStote } from "./store";
-const menuStore = useUserMenuStote();
+import { useCartMenuStore } from "@/pages/catalog/store";
+const cartMenuStore = useCartMenuStore();
+
+import { useUserMenuStore } from "./store";
+const userMenuStore = useUserMenuStore();
+
+const chatStore = useChatStore();
 
 import { useDepositModalStore } from "@/features/wallet/store";
+import CartMenu from "@/pages/catalog/UI/CartMenu.vue";
+import { useChatStore } from "../Chat/store";
 const modalStore = useDepositModalStore();
 
 const props = defineProps({
@@ -200,11 +212,6 @@ const props = defineProps({
 }
 .header-menu__pfp {
   margin: auto;
-}
-.header__menu {
-  position: fixed;
-  top: 100px;
-  right: 32px;
 }
 @media (max-width: 1280px) {
   .header__wrapper {

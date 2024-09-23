@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import Switch from "@/shared/UI/Inputs/Switch.vue";
-import TextInput from "@/shared/UI/Inputs/TextInput.vue";
 import Trash from "@/assets/icons/trash.svg?component";
 import { ref } from "vue";
 
-import { useInventoryStore } from "@/entities/user/model";
-const inventoryStore = useInventoryStore();
+import { useCartStore } from "@/entities/user/model";
+const cartStore = useCartStore();
 
 const props = defineProps({
   skin: Object,
@@ -17,6 +15,16 @@ let isSwitchActive = ref(false);
 <template>
   <div class="card">
     <div class="card__left">
+      <div class="card__stickers">
+        <img
+          height="16"
+          width="16"
+          class="card__sticker"
+          v-for="sticker in skin.stickers"
+          :src="sticker"
+          alt="sticker"
+        />
+      </div>
       <div class="card__image">
         <img :src="skin.imageURL" alt="skin" class="card__image-img" />
         <img src="@/assets/mainpage/bar.svg" alt="bar" v-if="skin.pattren" />
@@ -28,38 +36,12 @@ let isSwitchActive = ref(false);
           {{ skin.name
           }}<span v-if="skin.gun" class="grey"> | {{ skin.gun }}</span>
         </p>
-        <div class="card__stickers">
-          <img
-            height="16"
-            width="16"
-            class="card__sticker"
-            v-for="sticker in skin.stickers"
-            :src="sticker"
-            alt="sticker"
-          />
-        </div>
+        <p class="body">{{ skin.price }} <span class="grey">₽</span></p>
       </div>
     </div>
     <div class="card__right">
       <div class="card__price">
-        <TextInput
-          class="card__price-input"
-          type="number"
-          placeholder="Цена продажи"
-          v-model="skin.priceToSell"
-        />
-        <Trash
-          class="card__price-trash"
-          @click="inventoryStore.removeItem(skin)"
-        />
-      </div>
-      <div class="card__moment">
-        <Switch
-          class="card__switch"
-          :is-active="isSwitchActive"
-          @update="isSwitchActive = $event"
-        />
-        <p class="body">Момент. продажа</p>
+        <Trash class="card__price-trash" @click="cartStore.removeItem(skin)" />
       </div>
     </div>
   </div>
@@ -73,9 +55,20 @@ let isSwitchActive = ref(false);
   width: 100%;
   height: 108px;
 
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #171424;
+
+    & .card__price-trash {
+      display: block;
+    }
+  }
+
   &__left {
     display: flex;
     gap: 24px;
+    position: relative;
   }
 
   &__right {
@@ -88,7 +81,7 @@ let isSwitchActive = ref(false);
   &__image {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: end;
     height: 100%;
     width: 108px;
 
@@ -101,12 +94,13 @@ let isSwitchActive = ref(false);
   &__descr {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
   }
 
   &__stickers {
     height: 16px;
     width: 100%;
+    position: absolute;
   }
 
   &__price {
@@ -119,6 +113,7 @@ let isSwitchActive = ref(false);
     }
 
     &-trash {
+      display: none;
       &:hover {
         cursor: pointer;
         svg {
@@ -126,47 +121,6 @@ let isSwitchActive = ref(false);
             fill: #fff;
           }
         }
-      }
-    }
-  }
-
-  &__moment {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  &__switch {
-    width: 30px;
-    height: 20px;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 12px 16px;
-    height: 212px;
-    gap: 12px;
-
-    &__left {
-      height: 92px;
-    }
-
-    &__descr {
-      margin-right: -10%;
-    }
-
-    &__right {
-      max-width: none;
-      width: 100%;
-    }
-
-    &__price {
-      width: 100%;
-      gap: 16px;
-      justify-content: space-between;
-
-      input {
-        width: 100%;
       }
     }
   }

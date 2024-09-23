@@ -62,7 +62,7 @@ import { onMounted, ref } from "vue";
 import { useSellModalStore } from "./store";
 const modalStore = useSellModalStore();
 
-import { useInventoryStore } from "@/entities/skin/model";
+import { useInventoryStore } from "@/entities/user/model";
 const inventoryStore = useInventoryStore();
 
 const games = [
@@ -131,7 +131,6 @@ const updateSelectedGame = (game) => {
 const updateSelectedSort = (sort) => {
   selectedSort.value = sort;
   useSort();
-  console.log(skins.value);
 };
 
 onMounted(() => {

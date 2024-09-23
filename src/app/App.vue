@@ -10,6 +10,9 @@
     <SuccessModal />
     <WalletQRModal />
 
+    <SetNick />
+    <Chat />
+
     <SideMenu />
 
     <NavigationBar
@@ -28,24 +31,28 @@ import NavigationBar from "@/widgets/Header/NavigationBar.vue";
 import FooterBar from "@/widgets/Footer/FooterBar.vue";
 import LoadingScreen from "@/shared/loading/LoadingScreen.vue";
 
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-import LogoutModal from "./features/auth/logout/LogoutModal.vue";
-import { useUserStore } from "./entities/user/model";
+import LogoutModal from "@/features/auth/logout/LogoutModal.vue";
 
-import DepositModal from "./features/wallet/DepositModal.vue";
-import WithdrawalModal from "./features/wallet/WithdrawalModal.vue";
+import { useUserStore } from "@/entities/user/model";
+import { useItemsStore } from "@/entities/skin/model";
 
-import SideMenu from "./widgets/SideMenu/SideMenu.vue";
+import DepositModal from "@/features/wallet/DepositModal.vue";
+import WithdrawalModal from "@/features/wallet/WithdrawalModal.vue";
 
-import SellListModal from "./pages/profile/UI/Inventory/UI/SellListModal.vue";
-import ApiModal from "./pages/profile/UI/Inventory/UI/ApiModal.vue";
-import SuccessModal from "./pages/profile/UI/Inventory/UI/SuccessModal.vue";
-import WalletQRModal from "./features/wallet/UI/Deposit/WalletQRModal.vue";
-import UserMenu from "./widgets/Header/UI/UserMenu.vue";
+import SideMenu from "@/widgets/SideMenu/SideMenu.vue";
+
+import SellListModal from "@/pages/profile/UI/Inventory/UI/SellListModal.vue";
+import ApiModal from "@/pages/profile/UI/Inventory/UI/ApiModal.vue";
+import SuccessModal from "@/pages/profile/UI/Inventory/UI/SuccessModal.vue";
+import WalletQRModal from "@/features/wallet/UI/Deposit/WalletQRModal.vue";
+import Chat from "@/widgets/Chat/Chat.vue";
+import SetNick from "@/widgets/Chat/SetNick.vue";
 
 const userStore = useUserStore();
+const itemsStore = useItemsStore();
 
 let isLoading = ref(false);
 const router = useRouter();
@@ -53,16 +60,22 @@ const router = useRouter();
 const toProfile = () => {
   isLoading.value = true;
   setTimeout(() => {
+    userStore.logIn();
     isLoading.value = false;
-    router.push("/profile");
   }, 1000);
 };
+
+onMounted(() => {
+  itemsStore.fetchCs();
+});
 </script>
 
 <style>
 @font-face {
   font-family: "Geometria";
-  src: url("./assets/fonts/Geometria/Geometria-medium.ttf") format("truetype");
+  src: url("../assets/fonts/Geometria/Geometria-medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 * {
   margin: 0;
@@ -122,6 +135,10 @@ h3 {
   font-weight: 700;
   letter-spacing: -0.5px;
   text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 }
 h4 {
   font-family: Geometria;

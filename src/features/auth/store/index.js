@@ -16,7 +16,7 @@ export const useLogoutModalStore = defineStore("logout-modal", {
     logout() {
       const userStore = useUserStore();
       this.isOpen = false;
-      userStore.isLoggedIn = false;
+      userStore.logOut();
     },
   },
 });

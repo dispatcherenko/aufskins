@@ -9,7 +9,7 @@
 <script setup>
 import HugeBuys from "@/widgets/HugeBuys/HugeBuys.vue";
 import MainContainer from "./UI/MainContainer.vue";
-import ChatButton from "@/widgets/ChatButton/ChatButton.vue";
+import ChatButton from "@/widgets/Chat/ChatButton.vue";
 
 import { useUserStore } from "@/entities/user/model";
 import { onMounted } from "vue";
@@ -17,7 +17,7 @@ import { onMounted } from "vue";
 const userStore = useUserStore();
 
 onMounted(() => {
-  userStore.setLoggedIn();
+  userStore.logIn();
 });
 </script>
 

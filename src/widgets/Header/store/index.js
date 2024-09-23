@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useUserMenuStote = defineStore("user-menu", {
+export const useUserMenuStore = defineStore("user-menu", {
   state: () => ({ isOpen: false }),
   actions: {
     manageMenu() {

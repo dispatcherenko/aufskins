@@ -1,7 +1,20 @@
 import { defineStore } from "pinia";
+import { useFetch } from "../API";
 
 export const useItemsStore = defineStore("items", {
   state: () => ({
+    cs: [],
+    maxPriceCs: 1000,
+
+    dota: [],
+    maxPriceDota: 1000,
+
+    rust: [],
+    maxPriceRust: 1000,
+
+    tf: [],
+    maxPriceTf: 1000,
+
     bestCs: [],
     bestDota: [],
     bestTf: [],
@@ -9,34 +22,52 @@ export const useItemsStore = defineStore("items", {
     hugeBuys: [],
   }),
   actions: {
-    fetchBestCs() {
-      console.log("w");
+    async fetchCs() {
+      const res = await useFetch(`https://9be368f409e5ba1b.mokky.dev/cs`);
+      this.cs = await res.data;
+      this.maxPriceCs = await this.cs.reduce((max, item) => {
+        return item.price > max ? item.price : max;
+      }, 0);
     },
-  },
-});
-
-export const useInventoryStore = defineStore("inventory", {
-  state: () => ({
-    toSell: [],
-  }),
-  actions: {
-    addItem(item) {
-      const index = this.toSell.findIndex((elem) => elem.id === item.id);
-      if (index !== -1) {
-        this.toSell[index].priceToSell = item.price;
-      } else {
-        this.toSell.push({ ...item, priceToSell: item.price });
-      }
-
-      console.log(this.toSell[index]);
+    async fetchCsFilter(sort, filterString) {
+      const res = await useFetch(
+        `https://9be368f409e5ba1b.mokky.dev/cs`,
+        sort,
+        filterString
+      );
+      this.csFitler = await res.data;
     },
-    removeItem(item) {
-      this.toSell = this.toSell.filter((i) => i.id !== item.id);
+    async fetchDota(sort, filterString) {
+      const res = await useFetch(
+        `https://9be368f409e5ba1b.mokky.dev/dota`,
+        sort,
+        filterString
+      );
+      this.dota = await res.data;
+      this.maxPriceDota = await this.dota.reduce((max, item) => {
+        return item.price > max ? item.price : max;
+      }, 0);
     },
-  },
-  getters: {
-    total: (state) =>
-      state.toSell.reduce((sum, item) => sum + item.priceToSell, 0),
-    totalTax: (state) => (state.total * 95) / 100,
+    async fetchRust(sort, filterString) {
+      const res = await useFetch(
+        `https://9be368f409e5ba1b.mokky.dev/rust`,
+        sort,
+        filterString
+      );
+      this.rust = await res.data;
+      this.maxPriceRust = await this.rust.reduce((max, item) => {
+        return item.price > max ? item.price : max;
+      }, 0);
+    },
+    async fetchTf() {
+      const res = await useFetch(`https://9be368f409e5ba1b.mokky.dev/tf`);
+      this.tf = await res.data;
+      this.maxPriceTf = await this.tf.reduce((max, item) => {
+        return item.price > max ? item.price : max;
+      }, 0);
+    },
+    async fetchBestCs() {
+      this.bestCs = await useFetchBestCs();
+    },
   },
 });
