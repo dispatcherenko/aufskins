@@ -2,7 +2,11 @@
   <div class="container">
     <div class="menu">
       <div class="menu__info">
-        <ProfilePicture size="156" />
+        <ProfilePicture
+          image="https://i.postimg.cc/fbwV9Fcv/photo-1.jpg"
+          size="156"
+        />
+        <p class="menu__status">VIP 1</p>
         <p class="menu__nickname">Никнейм</p>
         <span class="menu__steam">
           <p class="menu__id-title">Steam ID</p>
@@ -108,6 +112,20 @@ watch(route, updateSelectedOption, { immediate: true });
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    align-items: center;
+  }
+
+  &__status {
+    font-family: Geometria;
+    font-size: 12px;
+    text-align: center;
+    max-width: 47px;
+    color: #c41341;
+    border-radius: 2px;
+    padding: 4px 8px 2px 8px;
+    background-color: #c413414d;
+
+    margin-bottom: 8px;
   }
 
   &__nickname {

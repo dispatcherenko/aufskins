@@ -3,6 +3,7 @@
     class="card"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
+    @click="toItemPage"
   >
     <div
       v-if="inventoryStore.toSell.find((item) => item.id === skin.id)"
@@ -65,14 +66,14 @@
         "
         text="Выбрать"
         class="bottom__button"
-        @click="inventoryStore.addItem(skin)"
+        @click="inventoryStore.addItem(skin, $event)"
       />
     </div>
     <ButtonXS
       v-if="inventoryStore.toSell.find((item) => item.id === skin.id)"
       text="Убрать"
       class="bottom__button--grey"
-      @click="inventoryStore.removeItem(skin)"
+      @click="inventoryStore.removeItem(skin, $event)"
     />
   </div>
 </template>
@@ -83,6 +84,9 @@ import ButtonXS from "@/shared/UI/Buttons/ButtonXS.vue";
 import { ref, onMounted, onRenderTracked, watch, onBeforeUnmount } from "vue";
 import { useInventoryStore } from "@/entities/user/model";
 const inventoryStore = useInventoryStore();
+
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const props = defineProps({
   skin: Object,
@@ -116,6 +120,11 @@ const isMobile = ref(window.innerWidth < 1280);
 
 const handleResize = () => {
   isMobile.value = window.innerWidth < 1280;
+};
+
+const toItemPage = (e) => {
+  e.stopPropagation();
+  router.push("/item/1");
 };
 
 onMounted(() => {

@@ -1,7 +1,7 @@
 <template>
   <div class="message">
     <div class="upper">
-      <p class="body grey">{{ nickname }}</p>
+      <a href="/login" class="body grey">{{ nickname }}</a>
       <p v-if="status === 'VIP 1'" class="status--vip1">{{ status }}</p>
       <p v-if="status === 'VIP 2'" class="status--vip2">{{ status }}</p>
       <p v-if="status === 'VIP 3'" class="status--vip3">{{ status }}</p>

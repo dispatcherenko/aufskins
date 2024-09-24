@@ -17,7 +17,9 @@ export const useInventoryStore = defineStore("inventory", {
     toSell: [],
   }),
   actions: {
-    addItem(item) {
+    addItem(item, e) {
+      e.stopPropagation();
+
       const index = this.toSell.findIndex((elem) => elem.id === item.id);
       if (index !== -1) {
         this.toSell[index].priceToSell = item.price;
@@ -25,7 +27,9 @@ export const useInventoryStore = defineStore("inventory", {
         this.toSell.push({ ...item, priceToSell: item.price });
       }
     },
-    removeItem(item) {
+    removeItem(item, e) {
+      e.stopPropagation();
+
       this.toSell = this.toSell.filter((i) => i.id !== item.id);
     },
   },
@@ -41,10 +45,14 @@ export const useCartStore = defineStore("cart", {
     cart: [],
   }),
   actions: {
-    addItem(item) {
+    addItem(item, e) {
+      e.stopPropagation();
+
       this.cart.push({ ...item });
     },
-    removeItem(item) {
+    removeItem(item, e) {
+      e.stopPropagation();
+
       this.cart = this.cart.filter((i) => i.id !== item.id);
     },
   },

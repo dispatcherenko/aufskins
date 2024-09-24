@@ -46,10 +46,10 @@
         <div class="item__seller-info-text">
           <div>
             <p class="body grey">Продавец</p>
-            <p class="upperBody">
+            <a href="/login" class="upperBody">
               Имя профиля скрыто
               <span class="smallfootnote green">Онлайн</span>
-            </p>
+            </a>
           </div>
           <p class="body grey">На AUFSkins c 9 августа 2024</p>
         </div>

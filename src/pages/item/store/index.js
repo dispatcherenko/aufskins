@@ -6,7 +6,9 @@ export const useSubmitModal = defineStore("submit-purchase", {
     confirmed: false,
   }),
   actions: {
-    openModal() {
+    openModal(e) {
+      e.stopPropagation();
+
       this.confirmed = false;
       this.isOpen = true;
     },

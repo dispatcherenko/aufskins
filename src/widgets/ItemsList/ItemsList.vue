@@ -50,7 +50,7 @@ const props = defineProps({
   }
   .items {
     width: 100vw;
-    left: -23px;
+    left: -20px;
     padding: 0 4px;
   }
 }

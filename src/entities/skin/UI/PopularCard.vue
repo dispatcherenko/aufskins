@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="toItemPage">
     <div class="upper">
       <img :src="imagePath" alt="bg" class="level" />
       <img :src="skin.imageURL" alt="skin" class="item" />
@@ -20,6 +20,9 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+import { useRouter } from "vue-router";
+const router = useRouter();
+
 const props = defineProps({
   skin: Object,
 });
@@ -29,6 +32,11 @@ const imagePath = ref("");
 const getImagePath = async (level) => {
   const module = await import(`@/assets/levels/${level}.svg`);
   return module.default;
+};
+
+const toItemPage = (e) => {
+  e.stopPropagation();
+  router.push("/item/1");
 };
 
 onMounted(async () => {

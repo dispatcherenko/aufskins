@@ -41,7 +41,11 @@
           </div>
           <div class="header-menu__right">
             <a href="/profile" class="pfp">
-              <ProfilePicture class="header-menu__pfp" size="56" />
+              <ProfilePicture
+                image="https://i.postimg.cc/fbwV9Fcv/photo-1.jpg"
+                class="header-menu__pfp"
+                size="56"
+              />
             </a>
             <Arrow
               class="arrow"

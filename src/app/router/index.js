@@ -19,6 +19,7 @@ import TFCatalog from "@/pages/catalog/UI/TFCatalog.vue";
 import TextPage from "@/pages/text/TextPage.vue";
 import AboutPage from "@/pages/about/AboutPage.vue";
 import ItemPage from "@/pages/item/ItemPage.vue";
+import UserPage from "@/pages/user/UserPage.vue";
 
 const baseUrl = import.meta.env.BASE_URL;
 const history = import.meta.env.SSR
@@ -50,6 +51,12 @@ const routes = [
       { path: "inventory", component: InventorySection, name: "inventory" },
       { path: "history", component: ProfileInfo, name: "history" },
     ],
+  },
+  {
+    path: "/:login",
+    component: UserPage,
+    name: "userpage",
+    props: true,
   },
   {
     path: "/links",

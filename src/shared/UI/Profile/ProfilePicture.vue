@@ -1,3 +1,5 @@
+// Аватар пользователя, передается url фотки
+
 <template>
   <div class="pfp-container" :style="containerStyle">
     <img :src="border" alt="border" class="pfp-border" :style="borderStyle" />
@@ -14,7 +16,7 @@
           fill="#ffffff"
         />
       </mask>
-      <image :href="pfp" width="152" height="152" mask="url(#svgmask1)" />
+      <image :href="image" width="152" height="152" mask="url(#svgmask1)" />
     </svg>
   </div>
 </template>
@@ -25,6 +27,7 @@ import border from "./border.svg";
 import { computed } from "vue";
 
 const props = defineProps({
+  image: String,
   size: {
     type: Number,
     default: 152,
