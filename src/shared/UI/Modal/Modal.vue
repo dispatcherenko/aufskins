@@ -3,7 +3,7 @@
     <div class="modal" v-if="isOpen">
       <div class="bg" @click="close"></div>
       <div class="window">
-        <a class="exit" @click="close">
+        <a v-if="closable" class="exit" @click="close">
           <Exit class="cross" />
         </a>
         <slot></slot>
@@ -14,7 +14,11 @@
 
 <script setup>
 import Exit from "@/assets/icons/exit.svg?component";
-const props = defineProps({ isOpen: Boolean, close: Function });
+const props = defineProps({
+  isOpen: Boolean,
+  close: Function,
+  closable: { type: Boolean, default: true },
+});
 </script>
 
 <style lang="scss" scoped>

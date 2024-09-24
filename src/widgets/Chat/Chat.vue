@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { nextTick, onMounted, onUnmounted, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { useChatStore } from "./store";
 
@@ -40,6 +40,19 @@ let selectedGame = ref("cs2");
 
 const changeGame = (game) => {
   selectedGame.value = game;
+};
+
+const slideDown = () => {
+  nextTick(() => {
+    if (chatMid.value) {
+      chatMid.value.scrollTop = chatMid.value.scrollHeight;
+    }
+  });
+};
+
+const sendMessage = () => {
+  chatStore.sendMessage();
+  slideDown();
 };
 </script>
 
@@ -91,38 +104,15 @@ const changeGame = (game) => {
           Team Fortress 2
         </p>
       </div>
-      <div class="chat__mid">
+      <div class="chat__mid" id="chatMid">
         <MessageFactory
-          type="outcoming"
-          message="Привет, я новенький!"
-          time="16:30"
-        />
-        <MessageFactory
-          type="incoming"
-          nickname="www"
-          message="Привет, новенький!"
-          time="16:31"
-        />
-        <MessageFactory
-          type="incoming"
-          nickname="the_killer"
-          status="VIP 1"
-          message="Привет, я VIP!"
-          time="16:31"
-        />
-        <MessageFactory
-          type="incoming"
-          nickname="antoxa2008"
-          status="VIP 2"
-          message="Привет, я VIP!"
-          time="16:31"
-        />
-        <MessageFactory
-          type="incoming"
-          nickname="krutoy-man"
-          status="VIP 3"
-          message="Привет, я VIP!"
-          time="16:31"
+          v-for="(message, index) in chatStore.messageQuery"
+          :key="index"
+          :type="message.type"
+          :nickname="message.nickname"
+          :status="message.status"
+          :message="message.message"
+          :time="message.time"
         />
       </div>
       <div class="chat__footer">
@@ -132,12 +122,13 @@ const changeGame = (game) => {
           name="message"
           id="message"
           placeholder="Сообщение"
+          v-model="chatStore.inputText"
         />
 
         <div class="chat__buttons">
           <span class="chat__buttons-divider"></span>
           <Settings class="chat__button" @click="chatStore.openSettings" />
-          <ArrowUp class="chat__button" />
+          <ArrowUp class="chat__button" @click="sendMessage" />
         </div>
       </div>
     </div>

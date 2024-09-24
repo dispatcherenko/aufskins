@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="cbcontainer">
     <input
       class="checkbox"
       type="checkbox"
@@ -46,7 +46,7 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-.container {
+.cbcontainer {
   display: block;
   position: relative;
   cursor: pointer;

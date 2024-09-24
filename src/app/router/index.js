@@ -18,6 +18,7 @@ import RustCatalog from "@/pages/catalog/UI/RustCatalog.vue";
 import TFCatalog from "@/pages/catalog/UI/TFCatalog.vue";
 import TextPage from "@/pages/text/TextPage.vue";
 import AboutPage from "@/pages/about/AboutPage.vue";
+import ItemPage from "@/pages/item/ItemPage.vue";
 
 const baseUrl = import.meta.env.BASE_URL;
 const history = import.meta.env.SSR
@@ -82,6 +83,11 @@ const routes = [
     path: "/about",
     component: AboutPage,
     name: "about",
+  },
+  {
+    path: "/item/:id",
+    component: ItemPage,
+    name: "item",
   },
 ];
 

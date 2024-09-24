@@ -9,6 +9,9 @@
     <ApiModal />
     <SuccessModal />
     <WalletQRModal />
+    <SubmitModal />
+    <LoadingModal />
+    <AwaitModal />
 
     <SetNick />
     <Chat />
@@ -50,6 +53,9 @@ import SuccessModal from "@/pages/profile/UI/Inventory/UI/SuccessModal.vue";
 import WalletQRModal from "@/features/wallet/UI/Deposit/WalletQRModal.vue";
 import Chat from "@/widgets/Chat/Chat.vue";
 import SetNick from "@/widgets/Chat/SetNick.vue";
+import SubmitModal from "@/pages/item/UI/SubmitModal.vue";
+import LoadingModal from "@/pages/item/UI/LoadingModal.vue";
+import AwaitModal from "@/pages/item/UI/AwaitModal.vue";
 
 const userStore = useUserStore();
 const itemsStore = useItemsStore();
@@ -128,6 +134,15 @@ h2 {
   font-size: 48px;
   font-weight: 700;
   text-align: left;
+
+  @media (max-width: 1280px) {
+    font-family: Geometria;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 34px;
+    letter-spacing: -0.5px;
+    text-align: left;
+  }
 }
 h3 {
   font-family: Geometria;
@@ -146,6 +161,14 @@ h4 {
   font-weight: 700;
   letter-spacing: -0.30000001192092896px;
   text-align: left;
+
+  @media (max-width: 1280px) {
+    font-family: Geometria;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+  }
 }
 .subheader {
   font-family: Geometria;

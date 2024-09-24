@@ -8,7 +8,7 @@
           <a class="logo" href="/"
             ><img src="@/assets/nav/avatar.svg" alt="logo"
           /></a>
-          <router-link :to="{ name: 'errorpage' }" class="footer-up__info-about"
+          <router-link :to="{ name: 'about' }" class="footer-up__info-about"
             >О нас</router-link
           >
           <p class="footer-up__info-help">
@@ -29,11 +29,17 @@
           <p class="footer-bottom__info-text">
             ©2024 AufSkins. Все права защищены
           </p>
-          <p class="footer-bottom__info-text">Правила сайта</p>
+          <router-link :to="{ name: 'text' }" class="footer-bottom__info-text"
+            >Правила сайта</router-link
+          >
         </div>
         <div class="footer-bottom__policy">
-          <p class="footer-bottom__policy-text">Политика файлов cookie</p>
-          <p class="footer-bottom__policy-text">Политика конфиденциальности</p>
+          <router-link :to="{ name: 'text' }" class="footer-bottom__policy-text"
+            >Политика файлов cookie</router-link
+          >
+          <router-link :to="{ name: 'text' }" class="footer-bottom__policy-text"
+            >Политика конфиденциальности</router-link
+          >
         </div>
       </div>
     </section>
