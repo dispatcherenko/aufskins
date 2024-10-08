@@ -9,7 +9,11 @@
           не получите предмет, то мы вернем полную сумму покупки на ваш кошелек
         </p>
       </div>
-      <Button2 class="container__button" text="В историю сделок" />
+      <Button2
+        class="container__button"
+        text="В историю сделок"
+        @click="toHistory"
+      />
     </div>
   </Modal>
 </template>
@@ -20,6 +24,14 @@ import Modal from "@/shared/UI/Modal/Modal.vue";
 import { useAwaitModal } from "../store";
 import Button2 from "@/shared/UI/Buttons/Button2.vue";
 const modalStore = useAwaitModal();
+
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const toHistory = () => {
+  modalStore.closeModal();
+  router.push("/profile/history");
+};
 </script>
 
 <style lang="scss" scoped>

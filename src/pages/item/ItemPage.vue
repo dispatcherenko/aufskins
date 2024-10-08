@@ -40,7 +40,7 @@
             class="item__image-sticker"
           />
         </div>
-        <Bar />
+        <BarImg />
       </div>
       <div class="item__seller-info">
         <div class="item__seller-info-text">
@@ -181,7 +181,15 @@
               :options="graphOptions"
             />
           </div>
-          <img src="./fullGraph.png" alt="graph" />
+          <div class="item__graph-chart">
+            <component
+              height="244"
+              :is="chartComponent"
+              type="area"
+              :options="options"
+              :series="series"
+            />
+          </div>
         </div>
         <div class="item__desc">
           <h4>Описание</h4>
@@ -324,8 +332,10 @@
 </template>
 
 <script setup>
+import { onMounted, ref, shallowRef } from "vue";
+
 import pink from "@/assets/levels/pink.svg?url";
-import Bar from "@/assets/mainpage/bar.svg?component";
+import BarImg from "@/assets/mainpage/bar.svg?component";
 import AveragePrice from "@/assets/icons/averagePrice.svg?component";
 import SaleAmount from "@/assets/icons/saleAmount.svg?component";
 import TopSale from "@/assets/icons/topSale.svg?component";
@@ -339,7 +349,14 @@ import Dropdown from "@/shared/UI/Select/Dropdown.vue";
 import ButtonXS from "@/shared/UI/Buttons/ButtonXS.vue";
 import HugeBuys from "@/widgets/HugeBuys/HugeBuys.vue";
 
-import { onMounted, ref } from "vue";
+import { options, series } from "./api/chart-config";
+
+let chartComponent = shallowRef(null);
+onMounted(async () => {
+  const VueApexCharts = (await import("vue3-apexcharts")).default;
+  chartComponent.value = VueApexCharts;
+});
+
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Grid, Navigation } from "swiper/modules";
 import "swiper/swiper-bundle.css";
@@ -671,6 +688,10 @@ onMounted(() => {
       *:hover {
         background-color: #100e19;
       }
+    }
+
+    &-chart {
+      height: 244px;
     }
   }
 

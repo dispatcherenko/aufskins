@@ -1,7 +1,7 @@
 <script setup>
 import Modal from "@/shared/UI/Modal/Modal.vue";
 import Spinner from "@/shared/UI/Spinner/Spinner.vue";
-import { useLoadingModal } from "../store";
+import { useLoadingModal } from "@/shared/loading/store";
 const modalStore = useLoadingModal();
 </script>
 

@@ -41,7 +41,10 @@ let isSwitchActive = ref(false);
     </div>
     <div class="card__right">
       <div class="card__price">
-        <Trash class="card__price-trash" @click="cartStore.removeItem(skin)" />
+        <Trash
+          class="card__price-trash"
+          @click="cartStore.removeItem(skin, $event)"
+        />
       </div>
     </div>
   </div>

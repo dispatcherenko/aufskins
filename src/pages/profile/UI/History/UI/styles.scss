@@ -1,0 +1,154 @@
+.details-container {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  gap: 32px;
+  width: 510px;
+
+  max-height: 90vh;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    width: 350px;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    &-timer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .timer {
+        padding: 4px 8px 3px 8px;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    gap: 24px;
+
+    img {
+      width: 108px;
+      height: 84px;
+    }
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &-string {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__buttons {
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    gap: 16px;
+
+    &-button {
+      width: 100%;
+      height: 48px;
+    }
+  }
+
+  &__stages {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &-card {
+      display: flex;
+      gap: 16px;
+      padding: 13px 16px;
+      background-color: #171424;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &-text {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2px;
+    }
+  }
+}
+.list {
+  margin-left: 19px;
+}
+.overflow {
+  margin-right: -44px;
+}
+.buttonxs {
+  width: 150px;
+  height: 36px;
+  padding: 6px 12px;
+  border-radius: 2px;
+
+  .body {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 6px 0;
+    width: 127px;
+  }
+}
+.timer {
+  min-width: 128px;
+  padding: 9px 8px;
+  gap: 10px;
+  border-radius: 2px;
+  background-color: #231f36;
+  color: #fff;
+
+  @media (max-width: 890px) {
+    display: none;
+  }
+}
+.buy {
+  color: #c41341;
+}
+.sell {
+  color: #3bc76b;
+}
+.green,
+.yellow,
+.red {
+  width: min-content;
+  padding: 4px 8px 2px;
+  border-radius: 2px;
+}
+.green {
+  background-color: #3bc76b4d;
+  color: #3bc76b;
+}
+.yellow {
+  background-color: #ffdf344d;
+  color: #ffdf34;
+}
+.red {
+  background-color: #c413414d;
+  color: #c41341;
+}

@@ -4,7 +4,6 @@ import {
   createMemoryHistory,
 } from "vue-router";
 
-import Links from "@/pages/Links.vue";
 import MainPage from "@/pages/main-page/MainPage.vue";
 import ErrorPage from "@/pages/error/ErrorPage.vue";
 import ProfilePage from "@/pages/profile/ProfilePage.vue";
@@ -41,7 +40,6 @@ const routes = [
   {
     path: "/profile",
     component: ProfilePage,
-    name: "profile",
     children: [
       { path: "", component: ProfileInfo, name: "profile-info" },
       {
@@ -50,7 +48,19 @@ const routes = [
         name: "notifications",
       },
       { path: "inventory", component: InventorySection, name: "inventory" },
-      { path: "history", component: HistorySection, name: "history" },
+      {
+        path: "history/:type?", // Опциональный параметр :type
+        name: "history",
+        component: HistorySection,
+        props: true,
+        beforeEnter: (to, from, next) => {
+          if (!to.params.type) {
+            next({ name: "history", params: { type: "buys" } });
+          } else {
+            next();
+          }
+        },
+      },
     ],
   },
   {
@@ -60,14 +70,8 @@ const routes = [
     props: true,
   },
   {
-    path: "/links",
-    component: Links,
-    name: "links",
-  },
-  {
     path: "/catalog",
     component: CatalogPage,
-    name: "catalog",
     beforeEnter: (to, from, next) => {
       if (to.path === "/catalog") {
         next("/catalog/cs");

@@ -1,7 +1,7 @@
 <template>
   <a
-    class="button"
     :class="{ 'button--disabled': disabled }"
+    class="button"
     @click.prevent="handleClick"
   >
     <img v-if="img" :src="img" :alt="alt" />

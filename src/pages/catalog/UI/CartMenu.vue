@@ -8,6 +8,8 @@ import CartItem from "./CartItem.vue";
 import Button2 from "@/shared/UI/Buttons/Button2.vue";
 import { useCartStore } from "@/entities/user/model";
 
+import EmptyCart from "@/assets/menu/emptyCart.svg?component";
+
 const getProductWord = (count) => {
   const lastDigit = count % 10;
   const isException = count > 10 && count < 20;
@@ -72,7 +74,16 @@ onUnmounted(() => {
         <a class="cart__close body" @click="menuStore.closeMenu">Закрыть</a>
       </div>
       <div class="cart__mid">
-        <CartItem v-for="skin in cartStore.cart" :key="skin.id" :skin="skin" />
+        <CartItem
+          v-if="cartStore.cart.length > 0"
+          v-for="skin in cartStore.cart"
+          :key="skin.id"
+          :skin="skin"
+        />
+        <div v-else class="cart__empty">
+          <EmptyCart />
+          <h4>Вы еще не добавили товары в корзину</h4>
+        </div>
       </div>
       <div class="cart__footer">
         <div class="cart__footer-total">
@@ -154,6 +165,22 @@ onUnmounted(() => {
 
     a {
       width: 100%;
+    }
+  }
+
+  &__empty {
+    display: flex;
+    height: 100%;
+    width: 254px;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 26px;
+
+    h4 {
+      text-align: center;
     }
   }
 

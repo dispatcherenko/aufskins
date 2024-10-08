@@ -1,32 +1,39 @@
 <template>
-  <div class="switch" @click="toggleOption">
-    <div class="button" :class="{ active: isFirstActive }">
-      {{ option1 }}
+  <div class="switch">
+    <div
+      class="button"
+      :class="{ active: option1.id === selected.id }"
+      @click="changeSelection(option1)"
+    >
+      {{ option1.name }}
     </div>
-    <div class="button" :class="{ active: !isFirstActive }">
-      {{ option2 }}
+    <div
+      class="button"
+      :class="{ active: option2.id === selected.id }"
+      @click="changeSelection(option2)"
+    >
+      {{ option2.name }}
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-defineProps({
-  option1: String,
-  option2: String,
+const props = defineProps({
+  option1: Object,
+  option2: Object,
+  selected: Object,
 });
 
-const isFirstActive = ref(true);
+const emit = defineEmits(["update:selected"]);
 
-const toggleOption = () => {
-  isFirstActive.value = !isFirstActive.value;
+const changeSelection = (option) => {
+  emit("update:selected", option);
 };
 </script>
 
 <style lang="scss" scoped>
 .switch {
-  width: 100%;
+  width: 212px;
   height: 48px;
   background-color: #171424;
   border-radius: 2px;
@@ -40,8 +47,8 @@ const toggleOption = () => {
 }
 
 .button {
-  flex: 1;
-  padding: 8px 16.5px;
+  width: 100%;
+  padding: 8px 0;
   text-align: center;
 }
 

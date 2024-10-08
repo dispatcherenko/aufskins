@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useLoadingModal } from "@/shared/loading/store";
 
 export const useSubmitModal = defineStore("submit-purchase", {
   state: () => ({
@@ -17,25 +18,11 @@ export const useSubmitModal = defineStore("submit-purchase", {
     },
     submit() {
       if (this.confirmed) {
+        const awaitModal = useAwaitModal();
         const loadingModal = useLoadingModal();
         this.closeModal();
-        loadingModal.openModal();
+        loadingModal.openModal(awaitModal);
       }
-    },
-  },
-});
-
-export const useLoadingModal = defineStore("loading-purchase", {
-  state: () => ({
-    isOpen: false,
-  }),
-  actions: {
-    async openModal() {
-      const awaitModal = useAwaitModal();
-      this.isOpen = true;
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      this.isOpen = false;
-      awaitModal.openModal();
     },
   },
 });

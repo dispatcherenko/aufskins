@@ -13,6 +13,11 @@
     <LoadingModal />
     <AwaitModal />
 
+    <BuyDetailsModal />
+    <AutoBuyDetailsModal />
+    <CreateSellModal />
+    <SellConfirmedModal />
+
     <SetNick />
     <Chat />
 
@@ -54,8 +59,12 @@ import WalletQRModal from "@/features/wallet/UI/Deposit/WalletQRModal.vue";
 import Chat from "@/widgets/Chat/Chat.vue";
 import SetNick from "@/widgets/Chat/SetNick.vue";
 import SubmitModal from "@/pages/item/UI/SubmitModal.vue";
-import LoadingModal from "@/pages/item/UI/LoadingModal.vue";
+import LoadingModal from "@/shared/loading/LoadingModal.vue";
 import AwaitModal from "@/pages/item/UI/AwaitModal.vue";
+import BuyDetailsModal from "@/pages/profile/UI/History/UI/BuyDetailsModal.vue";
+import AutoBuyDetailsModal from "@/pages/profile/UI/History/UI/AutoBuyDetailsModal.vue";
+import CreateSellModal from "@/pages/profile/UI/History/UI/CreateSellModal.vue";
+import SellConfirmedModal from "@/pages/profile/UI/History/UI/SellConfirmedModal.vue";
 
 const userStore = useUserStore();
 const itemsStore = useItemsStore();
@@ -97,6 +106,11 @@ body {
 
 *::-webkit-scrollbar {
   width: 12px; /* ширина scrollbar */
+}
+@media (max-width: 1280px) {
+  *::-webkit-scrollbar {
+    width: 4px;
+  }
 }
 *::-webkit-scrollbar-track {
   display: none; /* цвет дорожки */
@@ -202,6 +216,9 @@ h4 {
 }
 .red {
   color: #c41341;
+}
+.gold {
+  color: #cf6a32;
 }
 .upperbody {
   font-size: 18px;
